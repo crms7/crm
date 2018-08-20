@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,13 +22,14 @@
       <div class="login-box">
         <form class="login-form" action="/loginTo" method="post">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>登陆</h3>
+          <label style="color:red" th:text="${msg}"/>
           <div class="form-group">
             <label class="control-label">用户名</label>
-            <input class="form-control" id="user" type="text" placeholder="请输入用户名" name="e_LoginId" autofocus>
+            <input class="form-control" id="user" type="text" placeholder="请输入用户名" name="e_LoginId" required autofocus>
           </div>
           <div class="form-group">
             <label class="control-label">密码</label>
-            <input class="form-control" type="password" placeholder="请输入密码" name="e_Pwd">
+            <input class="form-control" type="password" placeholder="请输入密码" name="e_Pwd" required>
           </div>
           <div class="form-group">
             <div class="utility">
