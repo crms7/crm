@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.crm.dao.EmployeeInfo.EmployeeInfoMapper">
-    <resultMap id="empMap" type="EmployeeInfo" >
+<mapper namespace="com.crm.dao.EmployeeInfo.EmployeeInfoMapper" >
+    <resultMap id="empMap" type="EmployeeInfo" autoMapping="true" >
             <id property="e_Id" column="e_id"></id>
         <association property="dept" javaType="Dept">
             <id property="d_pId" column="dId"></id>
