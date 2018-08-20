@@ -1,7 +1,7 @@
 package com.crm.entity;
 
 
-import java.security.Timestamp;
+import java.util.Date;
 
 public class EmployeeInfo {
 
@@ -13,7 +13,7 @@ public class EmployeeInfo {
   private Long e_Depart;
   private Long e_State;
   private Long e_Role;
-  private Timestamp e_CreationTime;
+  private Date e_CreationTime;
   private String e_Phone;
   private Long e_Sex;
   private Long e_Operator;
@@ -101,11 +101,11 @@ public class EmployeeInfo {
     this.e_Role = e_Role;
   }
 
-  public Timestamp getE_CreationTime() {
+  public Date getE_CreationTime() {
     return e_CreationTime;
   }
 
-  public void setE_CreationTime(Timestamp e_CreationTime) {
+  public void setE_CreationTime(Date e_CreationTime) {
     this.e_CreationTime = e_CreationTime;
   }
 

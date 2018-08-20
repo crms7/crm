@@ -6,13 +6,16 @@
     <resultMap id="empMap" type="EmployeeInfo" autoMapping="true" >
             <id property="e_Id" column="e_id"></id>
         <association property="dept" javaType="Dept">
-            <id property="d_pId" column="dId"></id>
+            <id property="dp_Id" column="dId"></id>
         </association>
         <association property="role" javaType="RoleManagement">
-            <id column="rid" property="r_mId"></id>
+            <id column="rid" property="rm_Id"></id>
         </association>
     </resultMap>
     <select id="login" resultMap="empMap">
-        SELECT *, d.dp_id AS dId,r.rm_id AS  rid FROM Employee_info e, Role_management r,dept d WHERE e.e_depart=d.dp_id    AND  e.e_role=r.rm_id  and e.e_loginId=#{e_LoginId} and e.e_pwd=#{e_Pwd}
+        SELECT *, d.dp_id AS dId,r.rm_id AS  rid
+        FROM Employee_info e, Role_management r,dept d
+        WHERE e.e_depart=d.dp_id    AND  e.e_role=r.rm_id
+        and e.e_loginId=#{e_LoginId} and e.e_pwd=#{e_Pwd}
     </select>
 </mapper>

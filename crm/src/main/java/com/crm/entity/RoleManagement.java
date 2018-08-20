@@ -1,71 +1,89 @@
 package com.crm.entity;
 
 
-import java.security.Timestamp;
+import java.util.Date;
 
 public class RoleManagement {
 
-  private Long r_mId;
-  private String r_mCode;
-  private String r_mName;
-  private Long r_mDepartId;
-  private Timestamp r_mLastTime;
-  private Long r_mOperator;
-  private String r_mDescription;
+  private Long rm_Id;
+  private String rm_Code;
+  private String rm_Name;
+  private Long rm_DepartId;
+  private Date rm_LastTime;
+  private Long rm_Operator;
+  private String rm_Description;
+  private Dept dept;
+  private EmployeeInfo employeeInfo;
 
-  public Long getR_mId() {
-    return r_mId;
+  public Dept getDept() {
+    return dept;
   }
 
-  public void setR_mId(Long r_mId) {
-    this.r_mId = r_mId;
+  public void setDept(Dept dept) {
+    this.dept = dept;
   }
 
-  public String getR_mCode() {
-    return r_mCode;
+  public EmployeeInfo getEmployeeInfo() {
+    return employeeInfo;
   }
 
-  public void setR_mCode(String r_mCode) {
-    this.r_mCode = r_mCode;
+  public void setEmployeeInfo(EmployeeInfo employeeInfo) {
+    this.employeeInfo = employeeInfo;
   }
 
-  public String getR_mName() {
-    return r_mName;
+  public Long getRm_Id() {
+    return rm_Id;
   }
 
-  public void setR_mName(String r_mName) {
-    this.r_mName = r_mName;
+  public void setRm_Id(Long rm_Id) {
+    this.rm_Id = rm_Id;
   }
 
-  public Long getR_mDepartId() {
-    return r_mDepartId;
+  public String getRm_Code() {
+    return rm_Code;
   }
 
-  public void setR_mDepartId(Long r_mDepartId) {
-    this.r_mDepartId = r_mDepartId;
+  public void setRm_Code(String rm_Code) {
+    this.rm_Code = rm_Code;
   }
 
-  public Timestamp getR_mLastTime() {
-    return r_mLastTime;
+  public String getRm_Name() {
+    return rm_Name;
   }
 
-  public void setR_mLastTime(Timestamp r_mLastTime) {
-    this.r_mLastTime = r_mLastTime;
+  public void setRm_Name(String rm_Name) {
+    this.rm_Name = rm_Name;
   }
 
-  public Long getR_mOperator() {
-    return r_mOperator;
+  public Long getRm_DepartId() {
+    return rm_DepartId;
   }
 
-  public void setR_mOperator(Long r_mOperator) {
-    this.r_mOperator = r_mOperator;
+  public void setRm_DepartId(Long rm_DepartId) {
+    this.rm_DepartId = rm_DepartId;
   }
 
-  public String getR_mDescription() {
-    return r_mDescription;
+  public Date getRm_LastTime() {
+    return rm_LastTime;
   }
 
-  public void setR_mDescription(String r_mDescription) {
-    this.r_mDescription = r_mDescription;
+  public void setRm_LastTime(Date rm_LastTime) {
+    this.rm_LastTime = rm_LastTime;
+  }
+
+  public Long getRm_Operator() {
+    return rm_Operator;
+  }
+
+  public void setRm_Operator(Long rm_Operator) {
+    this.rm_Operator = rm_Operator;
+  }
+
+  public String getRm_Description() {
+    return rm_Description;
+  }
+
+  public void setRm_Description(String rm_Description) {
+    this.rm_Description = rm_Description;
   }
 }

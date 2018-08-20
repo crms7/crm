@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.dao.RoleManagement.RoleManagementMapper">
+
+    <resultMap id="roleMap" type="RoleManagement">
+        <id property="rm_Id" column="rm_id"></id>
+        <association property="dept" javaType="Dept">
+            <id property="dp_Id" column="d_id"></id>
+        </association>
+        <collection property="employeeInfo" javaType="EmployeeInfo">
+            <id property="e_Id" column="e_id"></id>
+        </collection>
+    </resultMap>
+
+    <select id="selectAll" resultMap="roleMap">
+        SELECT *, d.dp_id as d_id , e.e_id as e_id FROM Role_management r , dept d,Employee_info e
+        <where>
+            <if test="rm_Name!=null and rm_Name!=''">
+                and r.rm_name=#{rm_Name}
+            </if>
+            and  r.rm_departId=d.dp_id
+            AND r.rm_operator = e.e_id
+            AND r.rm_operator=1
+        </where>
+    </select>
+</mapper>

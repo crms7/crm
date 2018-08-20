@@ -1,4 +1,4 @@
-package com.crm.controller;
+package com.crm.controller.UtilController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

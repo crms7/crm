@@ -1,71 +1,72 @@
 package com.crm.entity;
 
 
-import java.security.Timestamp;
+import java.util.Date;
 
 public class Dept {
 
-  private Long d_pId;
-  private String d_pCode;
-  private String d_pName;
-  private Timestamp d_pLastTime;
-  private Long d_pOperator;
-  private String d_pDeptProfile;
-  private String d_pDescription;
+  private Long dp_Id;
+  private String dp_Code;
+  private String dp_Name;
+  private Date dp_LastTime;
+  private Long dp_Operator;
+  private String dp_DeptProfile;
+  private String dp_Description;
 
-  public Long getD_pId() {
-    return d_pId;
+
+  public Long getDp_Id() {
+    return dp_Id;
   }
 
-  public void setD_pId(Long d_pId) {
-    this.d_pId = d_pId;
+  public void setDp_Id(Long dp_Id) {
+    this.dp_Id = dp_Id;
   }
 
-  public String getD_pCode() {
-    return d_pCode;
+  public String getDp_Code() {
+    return dp_Code;
   }
 
-  public void setD_pCode(String d_pCode) {
-    this.d_pCode = d_pCode;
+  public void setDp_Code(String dp_Code) {
+    this.dp_Code = dp_Code;
   }
 
-  public String getD_pName() {
-    return d_pName;
+  public String getDp_Name() {
+    return dp_Name;
   }
 
-  public void setD_pName(String d_pName) {
-    this.d_pName = d_pName;
+  public void setDp_Name(String dp_Name) {
+    this.dp_Name = dp_Name;
   }
 
-  public Timestamp getD_pLastTime() {
-    return d_pLastTime;
+  public Date getDp_LastTime() {
+    return dp_LastTime;
   }
 
-  public void setD_pLastTime(Timestamp d_pLastTime) {
-    this.d_pLastTime = d_pLastTime;
+  public void setDp_LastTime(Date dp_LastTime) {
+    this.dp_LastTime = dp_LastTime;
   }
 
-  public Long getD_pOperator() {
-    return d_pOperator;
+  public Long getDp_Operator() {
+    return dp_Operator;
   }
 
-  public void setD_pOperator(Long d_pOperator) {
-    this.d_pOperator = d_pOperator;
+  public void setDp_Operator(Long dp_Operator) {
+    this.dp_Operator = dp_Operator;
   }
 
-  public String getD_pDeptProfile() {
-    return d_pDeptProfile;
+  public String getDp_DeptProfile() {
+    return dp_DeptProfile;
   }
 
-  public void setD_pDeptProfile(String d_pDeptProfile) {
-    this.d_pDeptProfile = d_pDeptProfile;
+  public void setDp_DeptProfile(String dp_DeptProfile) {
+    this.dp_DeptProfile = dp_DeptProfile;
   }
 
-  public String getD_pDescription() {
-    return d_pDescription;
+  public String getDp_Description() {
+    return dp_Description;
   }
 
-  public void setD_pDescription(String d_pDescription) {
-    this.d_pDescription = d_pDescription;
+  public void setDp_Description(String dp_Description) {
+    this.dp_Description = dp_Description;
   }
 }
