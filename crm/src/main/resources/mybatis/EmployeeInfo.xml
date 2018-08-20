@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.dao.EmployeeInfo.EmployeeInfoMapper">
+    <resultMap id="empMap" type="EmployeeInfo" >
+            <id property="e_Id" column="e_id"></id>
+        <association property="dept" javaType="Dept">
+            <id property="d_pId" column="dId"></id>
+        </association>
+        <association property="role" javaType="RoleManagement">
+            <id column="rid" property="r_mId"></id>
+        </association>
+    </resultMap>
+    <select id="login" resultMap="empMap">
+        SELECT *, d.dp_id AS dId,r.rm_id AS  rid FROM Employee_info e, Role_management r,dept d WHERE e.e_depart=d.dp_id   AND e_id =1 AND  e.e_role=r.rm_id  and e.e_loginId=#{e_LoginId} and e.e_pwd=#{e_Pwd}
+    </select>
+</mapper>
