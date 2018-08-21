@@ -18,16 +18,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 
     <!--日期控件start-->
 
-    <link rel="stylesheet"  href="css/datedropper.css">
-    <link rel="stylesheet"  href="css/timedropper.min.css">
+    <link rel="stylesheet"  href="/static/css/datedropper.css">
+    <link rel="stylesheet"  href="/static/css/timedropper.min.css">
     <!--日期控件end-->
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/dcalendar.picker.css"/>
+    <link rel="stylesheet" href="/static/css/dcalendar.picker.css"/>
   </head>
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
@@ -118,13 +118,13 @@
         </li>
         <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">销售管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="marketing-plan.html"><i class="icon fa fa-circle-o"></i>销售计划</a></li>
-            <li><a class="treeview-item " href="marketing-forecast.html"><i class="icon fa fa-circle-o"></i>销售预测</a></li>
-            <li><a class="treeview-item " href="marketing-perf.html"><i class="icon fa fa-circle-o"></i>销售绩效</a></li>
-            <li><a class="treeview-item " href="chance-manage.html"><i class="icon fa fa-circle-o"></i>机会管理</a></li>
-            <li><a class="treeview-item " href="contact-manage.html"><i class="icon fa fa-circle-o"></i>联系人管理</a></li>
-            <li><a class="treeview-item " href="contend-manage.html"><i class="icon fa fa-circle-o"></i>竞争管理</a></li>
-            <li><a class="treeview-item " href="marketing-analyze.html"><i class="icon fa fa-circle-o"></i>销售分析</a></li>
+            <li><a class="treeview-item" href="/jumps/marketing-plan.html"><i class="icon fa fa-circle-o"></i>销售计划</a></li>
+            <li><a class="treeview-item " href="/jumps/marketing-forecast.html"><i class="icon fa fa-circle-o"></i>销售预测</a></li>
+            <li><a class="treeview-item " href="/jumps/marketing-perf.html"><i class="icon fa fa-circle-o"></i>销售绩效</a></li>
+            <li><a class="treeview-item " href="/jumps/chance-manage.html"><i class="icon fa fa-circle-o"></i>机会管理</a></li>
+            <li><a class="treeview-item " href="/jumps/contact-manage.html"><i class="icon fa fa-circle-o"></i>联系人管理</a></li>
+            <li><a class="treeview-item " href="/jumps/contend-manage.html"><i class="icon fa fa-circle-o"></i>竞争管理</a></li>
+            <li><a class="treeview-item " href="/jumps/marketing-analyze.html"><i class="icon fa fa-circle-o"></i>销售分析</a></li>
           </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -204,16 +204,16 @@
     </main>
 
     <!-- Essential javascripts for application to work-->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="js/plugins/pace.min.js"></script>
+    <script src="/static/js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
     <!-- Data table plugin-->
-    <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/static/js/plugins/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <!-- Google analytics script-->
     <script>
@@ -290,8 +290,8 @@
         });
 
     </script>
-    <script type="text/javascript" src="js/timedropper.min.js"></script>
-    <script type="text/javascript"  src="js/datedropper.min.js"></script>
+    <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
+    <script type="text/javascript"  src="/static/js/datedropper.min.js"></script>
     <script type="text/javascript">
         $("#pickdate").dateDropper({
             animate: false,
