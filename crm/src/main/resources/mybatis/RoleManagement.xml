@@ -14,6 +14,18 @@
         </collection>
     </resultMap>
 
+    <select id="countRole" resultType="_int">
+         SELECT count(1), d.dp_id as d_id , e.e_id as e_id
+         FROM Role_management r , dept d,Employee_info e
+        <where>
+            <if test="rm_Name!=null and rm_Name!=''">
+                and r.rm_name=#{rm_Name}
+            </if>
+            and  r.rm_departId=d.dp_id
+            AND r.rm_operator = e.e_id
+        </where>
+    </select>
+
     <select id="selectAll" resultMap="roleMap">
         SELECT *, d.dp_id as d_id , e.e_id as e_id FROM Role_management r , dept d,Employee_info e
         <where>
@@ -22,7 +34,19 @@
             </if>
             and  r.rm_departId=d.dp_id
             AND r.rm_operator = e.e_id
-            AND r.rm_operator=1
         </where>
+        limit 0,100
     </select>
+    <update id="updateRole" >
+        UPDATE Role_management
+        SET rm_code=#{rm_Code},rm_name=#{rm_Name},rm_lastTime=NOW(),rm_description=#{rm_Description}
+        WHERE rm_id=#{rm_Id}
+    </update>
+    <insert id="insert">
+        INSERT INTO Role_management(rm_id,rm_code,rm_name,rm_departId,rm_lastTime,rm_operator,rm_description)
+        VALUES(DEFAULT ,#{rm_Code},#{rm_Name},#{rm_DepartId},NOW(),1,#{rm_Description})
+    </insert>
+    <delete id="deleteRole">
+        delete from Role_management where   rm_id=#{id}
+    </delete>
 </mapper>
