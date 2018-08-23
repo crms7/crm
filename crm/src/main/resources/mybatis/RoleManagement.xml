@@ -35,7 +35,7 @@
             and  r.rm_departId=d.dp_id
             AND r.rm_operator = e.e_id
         </where>
-        limit 0,100
+        limit #{begin},#{end}
     </select>
     <update id="updateRole" >
         UPDATE Role_management

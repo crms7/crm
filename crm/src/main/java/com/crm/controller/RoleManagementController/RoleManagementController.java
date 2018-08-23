@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,6 @@ public class RoleManagementController {
     RoleManagementService roleManagementService;
     ModelAndView mv = new ModelAndView();
 
-
     /**
      * 显示角色信息
      * @return
@@ -30,7 +28,7 @@ public class RoleManagementController {
     @ResponseBody
     public Object roleListShow(
             RoleManagement roleManagement,
-            @RequestParam(value = "draw", required = false, defaultValue = "1") String draw,
+            @RequestParam(value = "draw", required = false, defaultValue = "0") String draw,
             @RequestParam(value = "start", required = false, defaultValue = "0") Integer start,
             @RequestParam(value = "length", required = false, defaultValue = "5") Integer length){
         Map map = new HashMap();
@@ -39,7 +37,11 @@ public class RoleManagementController {
         Page<RoleManagement> pages = new Page<RoleManagement>();
         int countRole = roleManagementService.countRole(roleManagement); //得到角色表总记录数
         List<RoleManagement> roleManagements = roleManagementService.selectAll(map);
-        return roleManagements;
+        pages.setRecordsFiltered(countRole);
+        pages.setRecordsTotal(countRole);
+        pages.setData(roleManagements);
+        pages.setDraw(Integer.parseInt(draw));
+        return pages;
     }
 
     /**

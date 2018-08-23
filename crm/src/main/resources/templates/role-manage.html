@@ -223,7 +223,7 @@
                 "serverSide":true,//服务器端获取数据
                 "bStateSave": false,//不缓存数据
                 "ajax": {
-                    url:"/queryAppInfoList",
+                    url:"/roleList",
                     "type": "POST",
                     "dataType" : "JSON",
                     "data": function (datas) {
@@ -241,24 +241,19 @@
                 "searching" : false,//关闭搜索框
                 "columnDefs":[
                     {"title":"id","targets":0},
-                    {"title":"   ","targets":1},
-                    {"title":"角色名称","targets":2},
-                    {"title":"所属部门","targets":3},
-                    {"title":"最后修改时间","targets":4},
-                    {"title":"操作人","targets":5},
-                    {"title":"备注说明","targets":6}
+                    {"title":"角色名称","targets":1},
+                    {"title":"所属部门","targets":2},
+                    {"title":"最后修改时间","targets":3},
+                    {"title":"操作人","targets":4},
+                    {"title":"备注说明","targets":5}
                 ],
                 "columns": [
-                    { "data": "softwareName" },
-                    {"sClass": "text-center",
-                        "render": function (data, type, full, meta) {
-                            return '<input type="checkbox" class="checkchild"/>';
-                        },"bSortable": false},
-                    { "data": "apkName" },
-                    { "data": "softwareSize" },
-                    { "data": "flatfFormName" },
-                    { "data": "versionInfo",defaultContent:"" },
-                    { "data": "versionInfo",defaultContent:"" }
+                    { "data": "rm_Id" },
+                    { "data": "rm_Name" },
+                    { "data": "dept.dp_Name" },
+                    { "data": "rm_LastTime" },
+                    {"data":"rm_Operator"},
+                    { "data": "rm_Description" },
 
                 ],
                 "oLanguage" : { // 国际化配置
@@ -290,16 +285,6 @@
             });
         });
 
-    </script>
-    <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
-    <script type="text/javascript"  src="/static/js/datedropper.min.js"></script>
-    <script type="text/javascript">
-        $("#pickdate").dateDropper({
-            animate: false,
-            /* format: 'Y-m-d',*/
-            format: 'Y-m',
-            maxYear: '2020'
-        });
     </script>
   </body>
 </html>
