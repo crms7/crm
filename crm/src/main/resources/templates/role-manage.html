@@ -157,17 +157,18 @@
         <div class="form-group">
           <label class="control-label" >角色名称：</label>
           <!--<input class="form-control" style="width: 525px" id='mydatepicker2' placeholder="点击选择日期" type="text"/>-->
-          <input  class="form-control"  type="text"   />
+          <input  class="form-control"  type="text"  id="roleName" />
+            <input type="text"  id="roleId"  name="roleId" value="1" />
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button id="queryAppInfo" type="button" class="btn btn-success">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
+        <button id="queryRoleName" type="button" class="btn btn-success">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
       </form>
       <hr/>
       <div class="nav nav-pills ">
       <h3>角色信息列表</h3>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="btn-group">
-          <button type="button" onclick="window.location.href='add-role.html'" class="btn  btn-danger ">添加
+          <button type="button" onclick="window.location.href='add-role.html'" class="btn  btn-danger" >添加
           </button>
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -194,7 +195,7 @@
               <table class="table table-hover table-bordered" id="datatable-responsive">
                 <thead>
                 </thead>
-                <tbody>
+                <tbody >
 
                 </tbody>
               </table>
@@ -215,6 +216,7 @@
     <!-- Data table plugin-->
     <script type="text/javascript" src="/static/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/static/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/moment.js"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <!-- Google analytics script-->
     <script>
@@ -227,33 +229,45 @@
                     "type": "POST",
                     "dataType" : "JSON",
                     "data": function (datas) {
-                        datas.appInfo=JSON.stringify({"softwareName":$("#softwareName").val(),
-                            "status":$("#status").val(),
-                            "flatformId":$("#flatformId").val(),
-                            "categoryLevel1":$("#class1").val(),"categoryLevel2":$("#class2").val(),
-                            "categoryLevel3":$("#class3").val()});
+                        datas.rm_Name=$("#roleName").val();
                     }
                 },
                 lengthMenu: [ //自定义分页长度
-                    [ 10, 20, 50 ],
-                    [ '10 页', '20 页', '50页' ]
+                    [ 5, 10, 50 ],
+                    [ '5 页', '10 页', '50页' ]
                 ],
                 "searching" : false,//关闭搜索框
                 "columnDefs":[
                     {"title":"id","targets":0},
-                    {"title":"角色名称","targets":1},
-                    {"title":"所属部门","targets":2},
-                    {"title":"最后修改时间","targets":3},
-                    {"title":"操作人","targets":4},
-                    {"title":"备注说明","targets":5}
+                    {"title":"   ","targets":1},
+                    {"title":"角色名称","targets":2},
+                    {"title":"所属部门","targets":3},
+                    {"title":"最后修改时间","targets":4},
+                    {"title":"操作人","targets":5},
+                    {"title":"备注说明","targets":6}
                 ],
                 "columns": [
                     { "data": "rm_Id" },
+                    {"data": "rm_Id",
+                        "render": function (data, type, full, meta) {
+                        if(data==1){
+                            return  '<input type="radio" class="checkchild" name="r_id"  value='+data+' checked="checked" onclick="getRoleId()"  />';
+                        }else{
+                            return  '<input type="radio" class="checkchild" name="r_id"  value='+data+' onclick="getRoleId()" />';
+                        }
+                        },"bSortable": false},
                     { "data": "rm_Name" },
-                    { "data": "dept.dp_name" },
-                    { "data": "rm_LastTime" },
+                    { "data": "dept",
+                        "render": function (data, type, full, meta) {
+                            return  data.dp_Name;
+                        }
+                    },
+                    {"data":"rm_LastTime",
+                        "render": function (data, type, full, meta) {
+                            return  moment(data).format("YYYY-MM-DD HH:mm:ss");
+                        }},
                     {"data":"rm_Operator"},
-                    { "data": "rm_Description" },
+                    { "data": "rm_Description",defaultContent:""},
 
                 ],
                 "oLanguage" : { // 国际化配置
@@ -274,17 +288,23 @@
                     }
                 }
             });
-            $(".btn-success").on("click",function () {
-                $('#datatable-responsive').DataTable().ajax.reload();
-            });
-            $("#queryAppInfo").on("click",function () {
-                $('#datatable-responsive').DataTable().ajax.reload();
-            });
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
+        });
+
+        function getRoleId(){
+            $("#roleId").val($("input[name='r_id']:checked").val());
+        }
+
+        $(".btn-success").on("click",function () {
+            $('#datatable-responsive').DataTable().ajax.reload();
+        });
+        $("#queryRoleName").on("click",function () {
+            $('#datatable-responsive').DataTable().ajax.reload();
+        });
+        $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
         });
 
     </script>
+
   </body>
 </html>

@@ -19,7 +19,7 @@
          FROM Role_management r , dept d,Employee_info e
         <where>
             <if test="rm_Name!=null and rm_Name!=''">
-                and r.rm_name=#{rm_Name}
+                and r.rm_name like '%${rm_Name}%'
             </if>
             and  r.rm_departId=d.dp_id
             AND r.rm_operator = e.e_id
@@ -30,7 +30,7 @@
         SELECT *, d.dp_id as d_id , e.e_id as e_id FROM Role_management r , dept d,Employee_info e
         <where>
             <if test="rm_Name!=null and rm_Name!=''">
-                and r.rm_name=#{rm_Name}
+                and r.rm_name like '%${rm_Name}%'
             </if>
             and  r.rm_departId=d.dp_id
             AND r.rm_operator = e.e_id

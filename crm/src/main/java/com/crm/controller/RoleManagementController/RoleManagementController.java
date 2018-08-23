@@ -30,16 +30,20 @@ public class RoleManagementController {
             RoleManagement roleManagement,
             @RequestParam(value = "draw", required = false, defaultValue = "0") String draw,
             @RequestParam(value = "start", required = false, defaultValue = "0") Integer start,
-            @RequestParam(value = "length", required = false, defaultValue = "5") Integer length){
+            @RequestParam(value = "length", required = false, defaultValue = "5") Integer length,
+            @RequestParam(value = "rm_Name", required = false, defaultValue = "")  String rm_Name){
         Map map = new HashMap();
         map.put("begin",start);
         map.put("end",length);
+        map.put("rm_Name",rm_Name);
         Page<RoleManagement> pages = new Page<RoleManagement>();
         int countRole = roleManagementService.countRole(roleManagement); //得到角色表总记录数
         List<RoleManagement> roleManagements = roleManagementService.selectAll(map);
         pages.setRecordsFiltered(countRole);
         pages.setRecordsTotal(countRole);
         pages.setData(roleManagements);
+        pages.setLength(length);
+        pages.setStart(start);
         pages.setDraw(Integer.parseInt(draw));
         return pages;
     }

@@ -6,6 +6,7 @@ spring:
         username: root
         password: xiaotao
         driver-class-name: com.mysql.jdbc.Driver
+
     mvc:
       view:
         prefix: classpath:/templates/
