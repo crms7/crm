@@ -1,4 +1,3 @@
-
 function getDeptName(){
     $.ajax({
         url:"/getDName",
@@ -16,3 +15,5 @@ function getDeptName(){
         }
     })
 }
+
+

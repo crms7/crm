@@ -160,7 +160,8 @@
           <div class="tile">
             <div class="row container">
               <div class="col-lg-6" style="margin: 0 auto">
-                <form method="post" action="/updateRole">
+                <form method="post"  id="formId" onsubmit="return upRoleInfoValidator()">
+                  <input hidden="hidden" name="message" th:value="${message}" id="megId" />
                   <input type="hidden" id="roleId" name="rm_Id" th:value='${role.rm_Id}'/>
                   <div class="form-group">
                     <label class="control-label" ><span style="color: red;">*</span>角色编码:</label>
@@ -205,17 +206,10 @@
     <script type="text/javascript" src="/static/js/dcalendar.picker.js"></script>
     <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
     <script type="text/javascript" src="/static/js/datedropper.min.js"></script>
+    <script type="text/javascript" src="/static/js/role/roleup.js"></script>
     <script src="/static/js/cookie.js"></script>
     <script type="text/javascript"  src="/static/js/dept/dept.js"></script>
-    <script type="text/javascript">
-      /*  $('#mydatepicker').dcalendarpicker();
-        $('#mydatepicker2').dcalendarpicker({
-            format:'yyyy-mm-dd'
-        });
-        $('#mycalendar').dcalendar();
-*/
-
-    </script>
-
+    <script src="/static/js/bootstrap-notify.min.js"></script>
+    <script src="/static/js/bootstrapValidator.min.js"></script>
   </body>
 </html>
