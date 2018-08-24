@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
   <head>
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -37,7 +38,6 @@
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
-
         <!--Notification Menu-->
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">You have 4 new notifications.</li>
@@ -160,29 +160,30 @@
           <div class="tile">
             <div class="row container">
               <div class="col-lg-6" style="margin: 0 auto">
-                <form >
+                <form method="post" action="/updateRole">
+                  <input type="hidden" id="roleId" name="rm_Id" th:value='${role.rm_Id}'/>
                   <div class="form-group">
                     <label class="control-label" ><span style="color: red;">*</span>角色编码:</label>
-                    <input autofocus class="form-control"  type="text" >
+                    <input autofocus class="form-control"  type="text" name="rm_Code" id="rm_Code"th:value='${role.rm_Code}'>
                   </div>
                   <div class="form-group">
                     <label class="control-label"><span style="color: red;">*</span>角色名称：</label>
-                    <input  class="form-control"  type="text" >
+                    <input  class="form-control"  type="text" name="rm_Name"  id="rm_Name"  th:value='${role.rm_Name}'>
                   </div>
+                  <input hidden="hidden" th:value="${role.rm_DepartId}" id="did"/>
                   <div class="form-group">
                     <label class="control-label"><span style="color: red;">*</span>所属部门：</label>
-                    <select class="form-control" name="" >
-                      <option value="">总经办</option>
-                      <option value="">综合部</option>
+                    <select class="form-control" name="rm_DepartId" id="deptName">
+                       <option th:each="d:${dept}"  th:value="${d.dp_Id}" th:selected="${d.dp_Id eq  role.rm_DepartId}"   th:text="${d.dp_Name}"></option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="exampleTextarea">备注信息</label>
-                    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" name="rm_Description" th:text="${role.rm_Description}"></textarea>
                   </div>
                   <div class="tile-footer">
                     <button class="btn btn-primary" type="submit">保存</button>
-                    <button class="btn btn-danger" onclick="window.location.href='role-manage.html'" type="button">返回</button>
+                    <button class="btn btn-danger" onclick="window.location.href='/jumps/role-manage'" type="button">返回</button>
                   </div>
                 </form>
               </div>
@@ -204,6 +205,8 @@
     <script type="text/javascript" src="/static/js/dcalendar.picker.js"></script>
     <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
     <script type="text/javascript" src="/static/js/datedropper.min.js"></script>
+    <script src="/static/js/cookie.js"></script>
+    <script type="text/javascript"  src="/static/js/dept/dept.js"></script>
     <script type="text/javascript">
       /*  $('#mydatepicker').dcalendarpicker();
         $('#mydatepicker2').dcalendarpicker({
@@ -211,14 +214,8 @@
         });
         $('#mycalendar').dcalendar();
 */
-        $("#pickdate").dateDropper({
-            animate: false,
-          /* format: 'Y-m-d',*/
-            format: 'Y-m',
-            maxYear: '2020'
-        });
+
     </script>
-    <!--日期控件end-->
 
   </body>
 </html>

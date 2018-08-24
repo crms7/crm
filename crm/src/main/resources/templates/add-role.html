@@ -160,25 +160,23 @@
           <div class="tile">
             <div class="row container">
               <div class="col-lg-6" style="margin: 0 auto">
-                <form >
+                <form method="post" action="/addRole">
                   <div class="form-group">
                     <label class="control-label" ><span style="color: red;">*</span>角色编码:</label>
-                    <input autofocus class="form-control"  type="text" >
+                    <input autofocus class="form-control"  type="text" name="rm_Code" >
                   </div>
                   <div class="form-group">
                     <label class="control-label"><span style="color: red;">*</span>角色名称：</label>
-                    <input  class="form-control"  type="text" >
+                    <input  class="form-control"  type="text" name="rm_Name">
                   </div>
                   <div class="form-group">
                     <label class="control-label"><span style="color: red;">*</span>所属部门：</label>
-                    <select class="form-control" name="" >
-                      <option value="">总经办</option>
-                      <option value="">综合部</option>
+                      <select class="form-control" name="rm_DepartId"  id="deptName">
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="exampleTextarea">备注信息</label>
-                    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" name="rm_Description"></textarea>
                   </div>
                   <div class="tile-footer">
                     <button class="btn btn-primary" type="submit">添加</button>
@@ -196,6 +194,7 @@
     <script src="/static/js/popper.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/cookie.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="/static/js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
@@ -204,6 +203,7 @@
     <script type="text/javascript" src="/static/js/dcalendar.picker.js"></script>
     <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
     <script type="text/javascript" src="/static/js/datedropper.min.js"></script>
+    <script type="text/javascript" src="/static/js/dept/dept.js"></script>
     <script type="text/javascript">
       /*  $('#mydatepicker').dcalendarpicker();
         $('#mydatepicker2').dcalendarpicker({
@@ -211,6 +211,10 @@
         });
         $('#mycalendar').dcalendar();
 */
+      $(function(){
+          getDeptName();
+      })
+
         $("#pickdate").dateDropper({
             animate: false,
           /* format: 'Y-m-d',*/
@@ -219,6 +223,5 @@
         });
     </script>
     <!--日期控件end-->
-
   </body>
 </html>

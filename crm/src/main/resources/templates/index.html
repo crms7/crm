@@ -46,7 +46,7 @@
         <div>
           <p class="app-sidebar__user-name"  >欢迎您,<span th:text="${session.emp.getE_Name()}"></span></p>
           <p class="app-sidebar__user-designation"><span >部门：<label th:text="${session.emp.getDept().getDp_Name()}" /></span></p>
-          <p class="app-sidebar__user-designation"><span>角色：<label th:text="${session.emp.getRole().getRm_Name()}"/></span></p>
+           <p> <span>角色：<label th:text="${session.emp.getRole().getRm_Name()}"/></span></p>
         </div>
       </div>
       <ul class="app-menu">
@@ -101,7 +101,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-         
+
         </div>
       </div>
     </main>

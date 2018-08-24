@@ -39,7 +39,7 @@
     </select>
     <update id="updateRole" >
         UPDATE Role_management
-        SET rm_code=#{rm_Code},rm_name=#{rm_Name},rm_lastTime=NOW(),rm_description=#{rm_Description}
+        SET rm_code=#{rm_Code},rm_name=#{rm_Name},rm_lastTime=NOW(),rm_description=#{rm_Description} ,rm_departId=#{rm_DepartId}
         WHERE rm_id=#{rm_Id}
     </update>
     <insert id="insert">
@@ -49,4 +49,8 @@
     <delete id="deleteRole">
         delete from Role_management where   rm_id=#{id}
     </delete>
+
+    <select id="selectOne" resultType="RoleManagement">
+        select * from Role_management where rm_id=#{id}
+    </select>
 </mapper>

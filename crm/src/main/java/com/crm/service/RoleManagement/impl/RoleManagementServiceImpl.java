@@ -38,4 +38,9 @@ public class RoleManagementServiceImpl implements RoleManagementService {
     public int countRole(RoleManagement roleManagement) {
         return roleManagementMapper.countRole(roleManagement);
     }
+
+    @Override
+    public RoleManagement selectOne(Integer id) {
+        return roleManagementMapper.selectOne(id);
+    }
 }

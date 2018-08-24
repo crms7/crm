@@ -41,4 +41,6 @@ public interface RoleManagementService {
      * @return
      */
     int countRole(RoleManagement roleManagement);
+
+    RoleManagement selectOne(@Param("id")Integer id);
 }

@@ -23,6 +23,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
         InterceptorRegistration addInterceptor = registry.addInterceptor(getLoginInterceptor());
         //排除的路径
         addInterceptor.excludePathPatterns("/templates/page-error.html");
+        addInterceptor.excludePathPatterns("/templates/lianjie.html");
         addInterceptor.excludePathPatterns("/");
         addInterceptor.excludePathPatterns("/static/**");
         addInterceptor.excludePathPatterns("/loginTo");

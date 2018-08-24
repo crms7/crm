@@ -14,6 +14,6 @@ public class JumpController {
      */
     @RequestMapping("/jumps/{path}")
     public String Jump(@PathVariable("path") String path){
-        return path;
+            return path;
     }
 }

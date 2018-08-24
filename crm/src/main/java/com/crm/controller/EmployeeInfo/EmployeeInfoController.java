@@ -25,7 +25,7 @@ public class EmployeeInfoController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "/loginTo",method =  RequestMethod.POST)
+    @RequestMapping(value = "/loginTo",method = RequestMethod.POST)
     public ModelAndView login(EmployeeInfo employeeInfo, HttpSession session){
         //判断接收页面密码是否为空，为空直接返回登录
         if(employeeInfo.getE_Pwd()!=null&&employeeInfo.getE_Pwd()!=""){

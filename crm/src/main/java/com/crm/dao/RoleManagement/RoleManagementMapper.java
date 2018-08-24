@@ -41,4 +41,7 @@ public interface RoleManagementMapper {
      * @return
      */
     int countRole(RoleManagement roleManagement);
+
+
+    RoleManagement selectOne(@Param("id")Integer id);
 }
