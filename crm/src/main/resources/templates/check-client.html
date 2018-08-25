@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
   <head>
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -162,74 +163,74 @@
                   客户编码:
                 </dt>
                 <dd>
-                  A description list is perfect for defining terms.
+                  <label th:text="${clientInfo.getCr_ClientCode()}"/>
                 </dd>
                 <dt>
                   客户姓名:
                 </dt>
                 <dd>
-                  Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
+                  <label th:text="${clientInfo.getCr_ClientName()}"/>
                 </dd>
                 <dt>
                   性别:
                 </dt>
                 <dd>
-                  Etiam
+                  <label th:text="${clientInfo.getCr_Sex()}"/>
                 </dd>
                 <dt>
                   生日:
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getCr_Birthday()}"/>
                 </dd>
                 <dt>
                   类型:
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getClientType()}"/>
                 </dd>
                 <dt>
                   状态:
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getClientStatus()}"/>
                 </dd>
                 <dt>
                   手机:
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getCr_Phone()}"/>
                 </dd>
 
                 <dt>
                   办公电话:
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getCr_WorkTelephone()}"/>
                 </dd>
                 <dt>
                   电子邮箱:
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getCr_Email()}"/>
                 </dd>
                 <dt>
                   家庭电话
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getCr_HomeTelephone()}"/>
                 </dd>
                 <dt>
                   联系地址
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getCr_Address()}"/>
                 </dd>
                 <dt>
                   备注信息
                 </dt>
                 <dd>
-                  Fusce dapibus,
+                  <label th:text="${clientInfo.getCr_Remark()}"/>
                 </dd>
               </dl>
             </div>

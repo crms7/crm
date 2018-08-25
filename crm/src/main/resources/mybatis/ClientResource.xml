@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.dao.ClientResource.ClientResourceMapper">
+    <select id="selectClient" resultType="ClientResource">
+            SELECT  cr.*,dd1.valueName AS clientType,
+            dd2.valueName AS clientStatus,
+            dd3.valueName AS clientAllotStatus
+              FROM
+              client_Resource AS cr
+              ,data_dictionary AS dd1
+              ,data_dictionary AS dd2
+              ,data_dictionary AS dd3
+              <trim prefix="WHERE" prefixOverrides="and">
+                  <if test="client.cr_Id !=null and client.cr_Id >0">
+                      cr.cr_Id =#{client.cr_Id}
+                  </if>
+                  <if test="client.cr_ClientName!='' and client.cr_ClientName!=null">
+                      AND  cr.cr_ClientName like CONCAT('%',#{client.cr_ClientName},'%')
+                  </if>
+                  <if test="client.cr_Phone!='' and client.cr_Phone!=null">
+                      AND  cr.cr_Phone like CONCAT('%',#{client.cr_Phone},'%')
+                  </if>
+                  <if test="client.cr_AllotStatus>0 and client.cr_AllotStatus!=null">
+                      AND   cr.cr_AllotStatus = #{client.cr_AllotStatus}
+                  </if>
+                  AND (dd1.`valueId`=cr.`cr_type` AND dd1.typeName='客户类型')
+                  AND (dd2.`valueId`=cr.`cr_status` AND dd2.typeName='客户状态')
+                  AND (dd3.`valueId`=cr.`cr_allotStatus` AND dd3.`typeName`='客户分配')
+              </trim>
+              order by cr.cr_id
+              <if test="begin!=null and begin!=''">
+              limit #{begin},#{end}
+              </if>
+    </select>
+    <select id="countClient" resultType="_int">
+        select count(*) from client_Resource
+        <trim prefix="WHERE" prefixOverrides="and">
+            <if test="client.cr_ClientName!='' and client.cr_ClientName!=null">
+                AND    cr_ClientName like CONCAT('%',#{client.cr_ClientName},'%')
+            </if>
+            <if test="client.cr_Phone!='' and client.cr_Phone!=null">
+                AND cr_Phone like CONCAT('%',#{client.cr_Phone},'%')
+            </if>
+            <if test="client.cr_AllotStatus>0 and client.cr_AllotStatus!=null">
+                AND cr_AllotStatus = #{client.cr_AllotStatus}
+            </if>
+        </trim>
+    </select>
+</mapper>

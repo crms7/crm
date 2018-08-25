@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-
+      <link rel="stylesheet"  href="/static/css/extras.css">
     <!--日期控件start-->
 
     <link rel="stylesheet"  href="/static/css/datedropper.css">
@@ -151,29 +151,27 @@
           <li class="breadcrumb-item ">客户资源管理</li>
         </ul>
       </div>
-      <form role="form " class="form-inline ">
+      <div  class="form-inline ">
         <div class="form-group">
           <label class="control-label" >客户姓名：</label>
-            <select class="form-control"  name="" id="">
-                <option value="">
+            <select class="form-control"   id="clientTypeOpt">
+                <option value="name">
                     客户姓名
                 </option>
-            </select>
-          <!--<input class="form-control" style="width: 525px" id='mydatepicker2' placeholder="点击选择日期" type="text"/>-->
-          <input  class="form-control"  type="text"   />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <label class="control-label" >分配状态：</label>
-            <select class="form-control"  name="" >
-                <option value="">
-                    不限
+                <option value="phone">
+                    联系电话
                 </option>
             </select>
-            <!--<input class="form-control" style="width: 525px" id='mydatepicker2' placeholder="点击选择日期" type="text"/>-->
-            <input  class="form-control"  type="text"   />
+          <input  class="form-control"  type="text"  id="clientTypeVal" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="control-label" >分配状态：</label>
+            <select class="form-control" id="clientAllocaion">
+                <option value="0"> 不限</option>
+            </select>
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button id="queryAppInfo" type="button" class="btn btn-success">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
-      </form>
+        <button id="clientQuery" type="button" class="btn btn-success">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
+      </div>
       <hr/>
       <div class="nav nav-pills ">
       <h3>角色信息列表</h3>
@@ -187,11 +185,6 @@
           <button type="button"  onclick="window.location.href='upd-client.html'" class="btn  btn-danger ">修改
           </button>
         </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div class="btn-group">
-              <button type="button"  onclick="window.location.href='check-client.html'"  class="btn  btn-danger ">查看
-              </button>
-          </div>
       </div>
       <div>&nbsp;</div>
       <div class="row">
@@ -211,106 +204,16 @@
       </div>
     </main>
 
-    <!-- Essential javascripts for application to work-->
     <script src="/static/js/jquery-3.2.1.min.js"></script>
     <script src="/static/js/popper.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/main.js"></script>
-    <!-- The javascript plugin to display page loading on top-->
     <script src="/static/js/plugins/pace.min.js"></script>
-    <!-- Page specific javascripts-->
-    <!-- Data table plugin-->
+    <!--时间转换-->
+    <script type="text/javascript" src="/static/js/moment.js"></script>
     <script type="text/javascript" src="/static/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/static/js/plugins/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
-    <!-- Google analytics script-->
-    <script>
-        $(document).ready(function() {
-            $('#datatable-responsive').DataTable({
-                "serverSide":true,//服务器端获取数据
-                "bStateSave": false,//不缓存数据
-                "ajax": {
-                    url:"/queryAppInfoList",
-                    "type": "POST",
-                    "dataType" : "JSON",
-                    "data": function (datas) {
-                        datas.appInfo=JSON.stringify({"softwareName":$("#softwareName").val(),
-                            "status":$("#status").val(),
-                            "flatformId":$("#flatformId").val(),
-                            "categoryLevel1":$("#class1").val(),"categoryLevel2":$("#class2").val(),
-                            "categoryLevel3":$("#class3").val()});
-                    }
-                },
-                lengthMenu: [ //自定义分页长度
-                    [ 10, 20, 50 ],
-                    [ '10 页', '20 页', '50页' ]
-                ],
-                "searching" : false,//关闭搜索框
-                "columnDefs":[
-                    {"title":"id","targets":0},
-                    {"title":"   ","targets":1},
-                    {"title":"客户姓名","targets":2},
-                    {"title":"性别","targets":3},
-                    {"title":"类型","targets":4},
-                    {"title":"状态","targets":5},
-                    {"title":"分配状态","targets":6},
-                    {"title":"录入时间","targets":7},
-                    {"title":"录入人","targets":8}
-                ],
-                "columns": [
-                    { "data": "softwareName" },
-                    {"sClass": "text-center",
-                        "render": function (data, type, full, meta) {
-                            return '<input type="radio" class="checkchild"/>';
-                        },"bSortable": false},
-                    { "data": "apkName" },
-                    { "data": "softwareSize" },
-                    { "data": "flatfFormName" },
-                    { "data": "versionInfo",defaultContent:"" },
-                    { "data": "versionInfo",defaultContent:"" },
-                    { "data": "versionInfo",defaultContent:"" },
-                    { "data": "versionInfo",defaultContent:"" }
-
-                ],
-                "oLanguage" : { // 国际化配置
-                    "sProcessing": "正在获取数据，请稍后...",
-                    "sLengthMenu": "显示 _MENU_ 条",
-                    "sZeroRecords": "没有找到数据",
-                    "sInfo": "从 _START_ 到  _END_ 条记录 总记录数为 _TOTAL_ 条",
-                    "sInfoEmpty": "记录数为0",
-                    "sInfoFiltered": "(全部记录数 _MAX_ 条)",
-                    "sInfoPostFix": "",
-                    "sSearch": "查询",
-                    "sUrl": "",
-                    "oPaginate": {
-                        "sFirst": "第一页",
-                        "sPrevious": "上一页",
-                        "sNext": "下一页",
-                        "sLast": "最后一页"
-                    }
-                }
-            });
-            $(".btn-success").on("click",function () {
-                $('#datatable-responsive').DataTable().ajax.reload();
-            });
-            $("#queryAppInfo").on("click",function () {
-                $('#datatable-responsive').DataTable().ajax.reload();
-            });
-            $('#datatable-fixed-header').DataTable({
-                fixedHeader: true
-            });
-        });
-
-    </script>
-    <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
-    <script type="text/javascript"  src="/static/js/datedropper.min.js"></script>
-    <script type="text/javascript">
-        $("#pickdate").dateDropper({
-            animate: false,
-            /* format: 'Y-m-d',*/
-            format: 'Y-m',
-            maxYear: '2020'
-        });
-    </script>
+    <script type="text/javascript" src="/static/js/client/clientResource.js"></script>
   </body>
 </html>
