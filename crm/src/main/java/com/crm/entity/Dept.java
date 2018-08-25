@@ -9,7 +9,7 @@ public class Dept {
   private String dp_Code;
   private String dp_Name;
   private Date dp_LastTime;
-  private Long dp_Operator;
+  private String dp_Operator;
   private String dp_DeptProfile;
   private String dp_Description;
 
@@ -46,11 +46,11 @@ public class Dept {
     this.dp_LastTime = dp_LastTime;
   }
 
-  public Long getDp_Operator() {
+  public String getDp_Operator() {
     return dp_Operator;
   }
 
-  public void setDp_Operator(Long dp_Operator) {
+  public void setDp_Operator(String dp_Operator) {
     this.dp_Operator = dp_Operator;
   }
 

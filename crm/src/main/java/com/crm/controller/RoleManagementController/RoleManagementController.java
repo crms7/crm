@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -71,7 +69,7 @@ public class RoleManagementController {
         roleManagement.setRm_Description("超级管理员2");
         */
         EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
-        roleManagement.setRm_Operator(emp.getE_Id());
+        roleManagement.setRm_Operator(emp.getE_Name());
         int num = roleManagementService.insert(roleManagement);
         if(num>0){
             mv.setViewName("role-manage");
@@ -87,15 +85,18 @@ public class RoleManagementController {
      * @return
      */
     @RequestMapping("/updateRole")
-    public ModelAndView update(RoleManagement roleManagement,HttpSession session){
-
+    @ResponseBody
+    public Object update(RoleManagement roleManagement,HttpSession session){
         EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
-        roleManagement.setRm_Operator(emp.getE_Id());
+        roleManagement.setRm_Operator(emp.getE_Name());
         int i = roleManagementService.updateRole(roleManagement);
-        if(i>0){
-            mv.setViewName("role-manage");
-        }
-        return mv;
+//        if(i>0){
+//            mv.addObject("message","修改成功");
+//            mv.setViewName("role-manage");
+//        }else{
+//            mv.addObject("message","修改失败");
+//        }
+        return i;
     }
 
     @RequestMapping("/showUpInfo/{id}")
@@ -113,8 +114,9 @@ public class RoleManagementController {
      * @param id
      * @return
      */
-    @RequestMapping("/delRole")
-    public Object del(@RequestParam(required = false,defaultValue = "")  Integer id){
+    @RequestMapping("/delRole/{id}")
+    @ResponseBody
+    public Object del(@PathVariable("id")  Integer id){
         //测试数据id=7;
         int i = roleManagementService.deleteRole(id);
         return i;
