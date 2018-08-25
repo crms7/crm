@@ -10,7 +10,7 @@ public class RoleManagement {
   private String rm_Name;
   private Long rm_DepartId;
   private Date rm_LastTime;
-  private Long rm_Operator;
+  private String rm_Operator;
   private String rm_Description;
   private Dept dept;
   private EmployeeInfo employeeInfo;
@@ -71,11 +71,11 @@ public class RoleManagement {
     this.rm_LastTime = rm_LastTime;
   }
 
-  public Long getRm_Operator() {
+  public String getRm_Operator() {
     return rm_Operator;
   }
 
-  public void setRm_Operator(Long rm_Operator) {
+  public void setRm_Operator(String rm_Operator) {
     this.rm_Operator = rm_Operator;
   }
 

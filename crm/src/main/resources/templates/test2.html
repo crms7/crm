@@ -24,6 +24,15 @@
 <script type="text/javascript" src="/static/js/plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">$('#sampleTable').DataTable();</script>
 <script type="text/javascript">
-
+    $('#demoNotify').click(function() {
+        $.notify({
+            title: "!",
+            offset: "50",
+            message: "这是内容"
+        }, {
+            /*提示类型  info,  success , warning,danger*/
+            type: 'info'
+        });
+    });
 </script>
 </html>

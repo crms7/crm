@@ -69,7 +69,7 @@ public class RoleManagementController {
         roleManagement.setRm_Description("超级管理员2");
         */
         EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
-        roleManagement.setRm_Operator(emp.getE_Id());
+        roleManagement.setRm_Operator(emp.getE_Name());
         int num = roleManagementService.insert(roleManagement);
         if(num>0){
             mv.setViewName("role-manage");
@@ -88,7 +88,7 @@ public class RoleManagementController {
     @ResponseBody
     public Object update(RoleManagement roleManagement,HttpSession session){
         EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
-        roleManagement.setRm_Operator(emp.getE_Id());
+        roleManagement.setRm_Operator(emp.getE_Name());
         int i = roleManagementService.updateRole(roleManagement);
 //        if(i>0){
 //            mv.addObject("message","修改成功");

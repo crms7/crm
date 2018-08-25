@@ -9,42 +9,36 @@
         <association property="dept" javaType="Dept">
             <id property="dp_Id" column="d_id"></id>
         </association>
-        <collection property="employeeInfo" javaType="EmployeeInfo">
-            <id property="e_Id" column="e_id"></id>
-        </collection>
     </resultMap>
 
     <select id="countRole" resultType="_int">
-         SELECT count(1), d.dp_id as d_id , e.e_id as e_id
-         FROM Role_management r , dept d,Employee_info e
+          SELECT COUNT(1), d.dp_id AS d_id  FROM Role_management r , dept d
         <where>
             <if test="rm_Name!=null and rm_Name!=''">
                 and r.rm_name like '%${rm_Name}%'
             </if>
             and  r.rm_departId=d.dp_id
-            AND r.rm_operator = e.e_id
         </where>
     </select>
 
     <select id="selectAll" resultMap="roleMap">
-        SELECT *, d.dp_id as d_id , e.e_id as e_id FROM Role_management r , dept d,Employee_info e
+        SELECT *, d.dp_id as d_id FROM Role_management r , dept d
         <where>
             <if test="rm_Name!=null and rm_Name!=''">
                 and r.rm_name like '%${rm_Name}%'
             </if>
             and  r.rm_departId=d.dp_id
-            AND r.rm_operator = e.e_id
         </where>
         limit #{begin},#{end}
     </select>
     <update id="updateRole" >
         UPDATE Role_management
-        SET rm_code=#{rm_Code},rm_name=#{rm_Name},rm_lastTime=NOW(),rm_description=#{rm_Description} ,rm_departId=#{rm_DepartId}
+        SET rm_code=#{rm_Code},rm_name=#{rm_Name},rm_lastTime=NOW(),rm_description=#{rm_Description} ,rm_departId=#{rm_DepartId} ,rm_Operator=#{rm_Operator}
         WHERE rm_id=#{rm_Id}
     </update>
     <insert id="insert">
         INSERT INTO Role_management(rm_id,rm_code,rm_name,rm_departId,rm_lastTime,rm_operator,rm_description)
-        VALUES(DEFAULT ,#{rm_Code},#{rm_Name},#{rm_DepartId},NOW(),1,#{rm_Description})
+        VALUES(DEFAULT ,#{rm_Code},#{rm_Name},#{rm_DepartId},NOW(),#{rm_Operator},#{rm_Description})
     </insert>
     <delete id="deleteRole">
         delete from Role_management where   rm_id=#{id}
