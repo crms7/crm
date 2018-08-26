@@ -30,9 +30,7 @@
                   AND (dd3.`valueId`=cr.`cr_allotStatus` AND dd3.`typeName`='客户分配')
               </trim>
               order by cr.cr_id
-              <if test="begin!=null and begin!=''">
               limit #{begin},#{end}
-              </if>
     </select>
     <select id="countClient" resultType="_int">
         select count(*) from client_Resource
@@ -48,4 +46,15 @@
             </if>
         </trim>
     </select>
+    <insert id="addClient">
+      INSERT INTO client_Resource(`cr_id`,`cr_clientName`,`cr_clientCode`,
+      `cr_sex`,`cr_type`,`cr_status`,`cr_allotStatus`,
+      `cr_enterTime`,`cr_entryPerson`,`cr_birthday`,
+      `cr_phone`,`cr_workTelephone`,`cr_homeTelephone`,
+      `cr_email`,`cr_address`,`cr_remark`)
+      VALUE(DEFAULT,#{cr_ClientName},#{cr_ClientCode},#{cr_Sex},#{cr_Type},#{cr_Status}
+      ,1,NOW(),#{cr_EntryPerson},
+      #{cr_Birthday},#{cr_Phone},#{cr_WorkTelephone},#{cr_HomeTelephone},#{cr_Email},
+      #{cr_Address},#{cr_Remark})
+    </insert>
 </mapper>

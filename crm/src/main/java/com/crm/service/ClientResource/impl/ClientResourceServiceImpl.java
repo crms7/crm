@@ -42,4 +42,21 @@ public class ClientResourceServiceImpl implements ClientResourceService {
         return count;
         }
     }
+
+    /**
+     * 添加客户
+     * @param clientResource
+     * @return
+     */
+    @Override
+    public int addClient(ClientResource clientResource) {
+        int i = 0;
+        try {
+            i = clientResourceMapper.addClient(clientResource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            return i;
+        }
+    }
 }

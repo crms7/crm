@@ -3,17 +3,17 @@ package com.crm.controller.ClientResource;
 
 import com.crm.entity.ClientResource;
 import com.crm.entity.DataDictionary;
+import com.crm.entity.EmployeeInfo;
 import com.crm.service.ClientResource.ClientResourceService;
 import com.crm.service.DataDictionary.DataDictionaryService;
 import com.crm.util.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,5 +76,19 @@ public class ClientResourceController {
     public Object getDataDict(DataDictionary dataDictionary){
         List<DataDictionary> dataDict = dataDictService.getDataDict(dataDictionary);
         return dataDict;
+    }
+
+    /**
+     * 添加客户
+     * @param clientResource
+     * @return
+     */
+    @RequestMapping(value = "/addClient")
+    @ResponseBody
+    public Object addClient(ClientResource clientResource, HttpSession session){
+        EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
+        clientResource.setCr_EntryPerson(emp.getE_Name());
+        int i = clientResourceService.addClient(clientResource);
+        return i;
     }
 }

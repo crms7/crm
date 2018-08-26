@@ -10,4 +10,6 @@ public interface ClientResourceService {
     List<ClientResource> selectClient(Map map);
 
     int countClient(Map map);
+
+    int addClient(ClientResource clientResource);
 }

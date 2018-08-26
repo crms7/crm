@@ -1,5 +1,4 @@
-/* Formatting function for row details - modify as you need */
-
+/*附加信息查询*/
 function format ( d ) {
     // d 是该行的原始数据对象
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
@@ -53,8 +52,11 @@ function format ( d ) {
         '</tr>'+
         '</table>';
 }
+
+
+/*页面表格信息查询*/
 $(document).ready(function() {
-    $('#datatable-responsive').DataTable({
+   var table= $('#datatable-responsive').DataTable({
         "serverSide":true,//服务器端获取数据
         "bStateSave": false,//不缓存数据
         "ajax": {
@@ -72,8 +74,8 @@ $(document).ready(function() {
             }
         },
         lengthMenu: [ //自定义分页长度
-            [ 5, 10, 20 ],
-            [ '5', '10', '20' ]
+            [ 2, 5, 10 ],
+            [ '2', '5', '10' ]
         ],
         "searching" : false,//关闭搜索框
         "columnDefs":[
@@ -114,6 +116,7 @@ $(document).ready(function() {
                 }},
             { "data": "cr_entryPerson",defaultContent:"" }
         ],
+       "order": [[1, 'asc']],
         "oLanguage" : { // 国际化配置
             "sProcessing": "正在获取数据，请稍后...",
             "sLengthMenu": "显示 _MENU_ 条",
@@ -133,7 +136,6 @@ $(document).ready(function() {
         }
     });
     $('#datatable-responsive tbody').on('click', 'td.details-control', function () {
-        var table = $('#datatable-responsive').DataTable();
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         if ( row.child.isShown() ) {
@@ -178,4 +180,4 @@ $(document).ready(function (){
             }
         }
     })
-})
+});

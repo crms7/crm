@@ -21,4 +21,12 @@ public interface ClientResourceMapper {
      * @throws Exception
      */
     int countClient(Map map)throws Exception;
+
+    /**
+     * 添加客户
+     * @param clientResource
+     * @return
+     * @throws Exception
+     */
+    int addClient(ClientResource clientResource) throws  Exception;
 }

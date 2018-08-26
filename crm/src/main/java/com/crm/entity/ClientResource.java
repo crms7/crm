@@ -1,5 +1,7 @@
 package com.crm.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class ClientResource {
@@ -13,7 +15,8 @@ public class ClientResource {
   private Long cr_AllotStatus;
   private Date cr_EnterTime;
   private String cr_EntryPerson;
-  private java.sql.Date cr_Birthday;
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date cr_Birthday;
   private String cr_Phone;
   private Long cr_WorkTelephone;
   private Long cr_HomeTelephone;
@@ -97,11 +100,11 @@ public class ClientResource {
     this.cr_EntryPerson = cr_EntryPerson;
   }
 
-  public java.sql.Date getCr_Birthday() {
+  public Date getCr_Birthday() {
     return cr_Birthday;
   }
 
-  public void setCr_Birthday(java.sql.Date cr_Birthday) {
+  public void setCr_Birthday(Date cr_Birthday) {
     this.cr_Birthday = cr_Birthday;
   }
 
