@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 public class DeptController {
     @Resource
-    DeptService deptService;
+   private   DeptService deptService;
 
     /**
      * 下拉框name

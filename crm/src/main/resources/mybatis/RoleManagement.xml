@@ -47,4 +47,16 @@
     <select id="selectOne" resultType="RoleManagement">
         select * from Role_management where rm_id=#{id}
     </select>
+    <select id="selectExit" resultType="_int">
+         SELECT COUNT(1) FROM Role_management
+         <where>
+                  rm_id!=#{id}
+             <if test="code!='' and code!=null">
+                 rm_code=#{code}  or
+             </if>
+             <if test="name!='' and name!=null">
+                 name=#{name}  AND
+             </if>
+         </where>
+    </select>
 </mapper>

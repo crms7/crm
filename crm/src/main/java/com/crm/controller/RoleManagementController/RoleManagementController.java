@@ -6,11 +6,9 @@ import com.crm.entity.RoleManagement;
 import com.crm.service.Dept.DeptService;
 import com.crm.service.RoleManagement.RoleManagementService;
 import com.crm.util.Page;
+import com.sun.org.apache.xml.internal.resolver.readers.TR9401CatalogReader;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -22,9 +20,9 @@ import java.util.Map;
 @Controller
 public class RoleManagementController {
     @Resource
-    RoleManagementService roleManagementService;
+    private RoleManagementService roleManagementService;
     @Resource
-    DeptService deptService;
+    private DeptService deptService;
     ModelAndView mv = new ModelAndView();
     /**
      * 显示角色信息
@@ -59,24 +57,13 @@ public class RoleManagementController {
      * @param roleManagement
      * @return
      */
-    @RequestMapping("/addRole")
-    public ModelAndView add(RoleManagement roleManagement, HttpSession session){
-        /* 测试数据
-        roleManagement.setRm_Code("t2");
-        roleManagement.setRm_Name("涛子2");
-        roleManagement.setRm_DepartId(1L);
-        roleManagement.setRm_Operator(1L);
-        roleManagement.setRm_Description("超级管理员2");
-        */
-        EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
+    @RequestMapping(value = "/addRole")
+    @ResponseBody
+    public Object add(RoleManagement roleManagement, HttpSession session){
+            EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
         roleManagement.setRm_Operator(emp.getE_Name());
         int num = roleManagementService.insert(roleManagement);
-        if(num>0){
-            mv.setViewName("role-manage");
-        }else{
-            mv.setViewName("add-role");
-        }
-        return mv;
+        return num;
     }
 
     /**
@@ -84,21 +71,20 @@ public class RoleManagementController {
      * @param roleManagement
      * @return
      */
-    @RequestMapping("/updateRole")
+    @RequestMapping(value = "/updateRole")
     @ResponseBody
     public Object update(RoleManagement roleManagement,HttpSession session){
         EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
         roleManagement.setRm_Operator(emp.getE_Name());
         int i = roleManagementService.updateRole(roleManagement);
-//        if(i>0){
-//            mv.addObject("message","修改成功");
-//            mv.setViewName("role-manage");
-//        }else{
-//            mv.addObject("message","修改失败");
-//        }
         return i;
     }
 
+    /**
+     * 点击修改按钮 得到id返回全部数据
+     * @param id
+     * @return
+     */
     @RequestMapping("/showUpInfo/{id}")
     public ModelAndView showUpInfo(@PathVariable("id") String id){
         List<Dept> depts = deptService.selectAll();
@@ -117,9 +103,28 @@ public class RoleManagementController {
     @RequestMapping("/delRole/{id}")
     @ResponseBody
     public Object del(@PathVariable("id")  Integer id){
-        //测试数据id=7;
         int i = roleManagementService.deleteRole(id);
         return i;
     }
+
+    /**
+     * 验证角色编码或名称是否存在
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/roleExits",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> roleExit(@RequestParam(required = false,defaultValue = "",value = "rm_Code") String rm_Code,@RequestParam(required = false,defaultValue = "" ,value = "rm_Name")String rm_Name,@RequestParam(required = false,defaultValue = "")Integer id){
+        int i = roleManagementService.selectExit(rm_Code, rm_Name, id);
+            HashMap map = new HashMap();
+        if(i>0){
+            map.put("valid",false);
+        }else{
+            map.put("valid",true);
+        }
+        return map;
+    }
+
 
 }

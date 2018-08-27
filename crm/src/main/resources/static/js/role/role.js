@@ -1,6 +1,37 @@
 $(function(){
     showRoleList;
+    imgs();
 })
+
+function format (d) {
+    // d 是该行的原始数据对象
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+        '<td>角色编码:</td>'+
+        '<td>'+d.rm_Code+'</td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td>角色名称:</td>'+
+        '<td>'+d.rm_Name+'</td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td>所属部门:</td>'+
+        '<td>'+d.dept.dp_Name+'</td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td>最后修改时间:</td>'+
+        '<td>'+moment(d.rm_LastTime).format("YYYY-MM-DD HH:mm:ss")+'</td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td>操作人:</td>'+
+        '<td>'+d.rm_Operator+'</td>'+
+        '</tr>'+
+        '<tr>'+
+        '<td>备注说明:</td>'+
+        '<td>'+d.rm_Description+'</td>'+
+        '</tr>'+
+        '</table>';
+}
 
 /**
  * 分页显示数据
@@ -23,15 +54,22 @@ var showRoleList= $('#datatable-responsive').DataTable({
     ],
     "searching" : false,//关闭搜索框
     "columnDefs":[
-        {"title":"id","targets":0},
-        {"title":"   ","targets":1},
-        {"title":"角色名称","targets":2},
-        {"title":"所属部门","targets":3},
-        {"title":"最后修改时间","targets":4},
-        {"title":"操作人","targets":5},
-        {"title":"备注说明","targets":6}
+        {"title":"  ","targets":0},
+        {"title":"id","targets":1},
+        {"title":"   ","targets":2},
+        {"title":"角色名称","targets":3},
+        {"title":"所属部门","targets":4},
+        {"title":"最后修改时间","targets":5},
+        {"title":"操作人","targets":6},
+        {"title":"备注说明","targets":7}
     ],
     "columns": [
+        {
+            "class":'details-control',
+            "orderable":false,
+            "data":null,
+            "defaultContent":''
+        },
         { "data": "rm_Id" },
         {"data": "rm_Id",
             "render": function (data, type, full, meta) {
@@ -74,6 +112,25 @@ var showRoleList= $('#datatable-responsive').DataTable({
     }
 });
 
+
+function imgs(){
+    $('#datatable-responsive tbody').on('click', 'td.details-control', function () {
+        var table = $('#datatable-responsive').DataTable();
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } )
+}
+
 /**
  * 删除角色
  */
@@ -85,10 +142,14 @@ function delRole(){
         dataType:"json",
         success:function(data){
             if(data>0){
-                alert("删除成功");
                 $('#datatable-responsive').DataTable().ajax.reload();
             }else{
-                alert("删除失败");
+                $.notify({
+                    offset: "50",
+                    message: "删除失败"
+                },{
+                    type:"danger"
+                });
             }
         }
     })
@@ -102,6 +163,7 @@ function showUpInfo(){
     window.location.href="/showUpInfo/"+$("#roleId").val();
 }
 
+
 $(".btn-success").on("click",function () {
     $('#datatable-responsive').DataTable().ajax.reload();
 });
@@ -111,4 +173,3 @@ $("#queryRoleName").on("click",function () {
 $('#datatable-fixed-header').DataTable({
     fixedHeader: true
 });
-

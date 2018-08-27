@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class EmployeeInfoController {
     @Resource
-    EmployeeInfoService employeeInfoService;
-    ModelAndView mv = new ModelAndView();
+    private   EmployeeInfoService employeeInfoService;
+    private ModelAndView mv = new ModelAndView();
 
     /**
      * 登录信息验证
@@ -33,14 +33,16 @@ public class EmployeeInfoController {
             employeeInfo.setE_Pwd(m_pwd);
             EmployeeInfo emp=null;
             try {
-                emp = employeeInfoService.login(employeeInfo);
+                emp = employeeInfoService.login(employeeInfo); //调用登录的方法
             } catch (Exception e) {
                 System.out.println(e);
             }finally {
+                //登录成功
                 if(emp!=null){
                     session.setAttribute("emp",emp);
                     mv.setViewName("index");
                 }else{
+                    //登录成功
                     mv.addObject("msg","账号或密码错误");
                     mv.setViewName("page-login");
                 }
@@ -61,6 +63,21 @@ public class EmployeeInfoController {
     @RequestMapping("/")
     public String defaultPage(){
         return "page-login";
+    }
+
+    /**
+     * 修改emp
+     * @param employeeInfo
+     * @return
+     */
+    @RequestMapping("/upEmp")
+    @ResponseBody
+    public Object updateEmp(EmployeeInfo employeeInfo,HttpSession session){
+        EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
+        employeeInfo.setE_Id(emp.getE_Id());
+        employeeInfo.setE_Phone(emp.getE_Phone());
+        int num = employeeInfoService.updateEmp(employeeInfo);
+        return num;
     }
 
 }

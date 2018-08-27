@@ -9,4 +9,11 @@ public interface EmployeeInfoService {
      * @return
      */
     EmployeeInfo login(EmployeeInfo employeeInfo) throws Exception;
+
+    /**
+     * 修改用户
+     * @param employeeInfo
+     * @return
+     */
+    int updateEmp(EmployeeInfo employeeInfo);
 }

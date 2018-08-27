@@ -18,4 +18,45 @@
         WHERE e.e_depart=d.dp_id    AND  e.e_role=r.rm_id
         and e.e_loginId=#{e_LoginId} and e.e_pwd=#{e_Pwd}
     </select>
+    <update id="updateEmp">
+        UPDATE Employee_info
+        <trim  prefix="set" prefixOverrides=","  suffix="where e_id=#{e_Id}">
+            <if test="e_LoginId!=null and e_LoginId!=''">
+               , e_loginId=#{e_LoginId}
+            </if>
+            <if test="e_Pwd!=null and e_Pwd!=''">
+               , e_pwd=#{e_Pwd}
+            </if>
+            <if test="e_Number!=null and e_Number!=''">
+               , e_number=#{e_Number}
+            </if>
+            <if test="e_Name!=null and e_Name!=''">
+               , e_Name=#{e_Name}
+            </if>
+            <if test="e_Depart!=null and e_Depart!=''">
+               , e_Depart=#{e_Depart}
+            </if>
+            <if test="e_State!=null and e_State!=''">
+               , e_State=#{e_State}
+            </if>
+            <if test="e_Role!=null and e_Role!=''">
+               , e_Role=#{e_Role}
+            </if>
+            <if test="e_CreationTime!=null ">
+               , e_CreationTime=#{e_CreationTime}
+            </if>
+            <if test="e_Phone!=null and e_Phone!=''">
+               , e_Phone=#{e_Phone}
+            </if>
+            <if test="e_Sex!=null and e_Sex!=''">
+               , e_Sex=#{e_Sex}
+            </if>
+            <if test="e_Operator!=null and e_Operator!=''">
+               , e_Operator=#{e_Operator}
+            </if>
+            <if test="e_Description!=null and e_Description!=''">
+               , e_Description=#{e_Description}
+            </if>
+        </trim>
+    </update>
 </mapper>

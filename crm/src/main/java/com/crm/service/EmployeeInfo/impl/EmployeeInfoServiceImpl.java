@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 @Service
 public class EmployeeInfoServiceImpl implements EmployeeInfoService {
     @Resource
-    EmployeeInfoMapper employeeInfoMapper;
+    private  EmployeeInfoMapper employeeInfoMapper;
 
 
     /**
@@ -28,5 +28,10 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
         }finally {
             return emp;
         }
+    }
+
+    @Override
+    public int updateEmp(EmployeeInfo employeeInfo) {
+        return employeeInfoMapper.updateEmp(employeeInfo);
     }
 }

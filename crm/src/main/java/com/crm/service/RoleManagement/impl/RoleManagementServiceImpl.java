@@ -11,8 +11,8 @@ import java.util.Map;
 
 @Service
 public class RoleManagementServiceImpl implements RoleManagementService {
-    @Resource
-    RoleManagementMapper roleManagementMapper;
+     @Resource
+     private  RoleManagementMapper roleManagementMapper;
 
     @Override
     public List<RoleManagement> selectAll(Map map) {
@@ -42,5 +42,10 @@ public class RoleManagementServiceImpl implements RoleManagementService {
     @Override
     public RoleManagement selectOne(Integer id) {
         return roleManagementMapper.selectOne(id);
+    }
+
+    @Override
+    public int selectExit(String  code,String name,Integer id) {
+        return  roleManagementMapper.selectExit(code, name,id);
     }
 }

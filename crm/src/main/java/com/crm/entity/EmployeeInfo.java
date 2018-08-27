@@ -21,6 +21,7 @@ public class EmployeeInfo {
   private Dept dept;
   private RoleManagement role;
 
+
   public Dept getDept() {
     return dept;
   }

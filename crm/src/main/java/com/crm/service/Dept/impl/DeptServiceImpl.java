@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class DeptServiceImpl implements DeptService {
     @Resource
-    DeptMapper deptMapper;
+   private  DeptMapper deptMapper;
 
     @Override
     public List<Dept> selectAll() {

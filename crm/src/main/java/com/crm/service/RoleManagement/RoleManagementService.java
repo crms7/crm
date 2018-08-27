@@ -42,5 +42,17 @@ public interface RoleManagementService {
      */
     int countRole(RoleManagement roleManagement);
 
+    /**
+     * 点击修改时，得到修改前的信息
+     * @param id
+     * @return
+     */
     RoleManagement selectOne(@Param("id")Integer id);
+
+    /**
+     * 根据编码和角色名称，是否存在
+     * @param
+     * @return
+     */
+    int selectExit(String Code , String name,Integer id);
 }

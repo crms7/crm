@@ -37,8 +37,6 @@
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
-
-        <!--Notification Menu-->
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">You have 4 new notifications.</li>
             <div class="app-notification__content">
@@ -90,6 +88,8 @@
     </header>
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
         <div>
@@ -98,16 +98,6 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
-            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
-            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
-            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
-          </ul>
-        </li>
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
         <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">系统管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/jumps/role-manage.html"><i class="icon fa fa-circle-o"></i>角色管理</a></li>
@@ -119,30 +109,37 @@
         </li>
         <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">销售管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/jumps/marketing-plan"><i class="icon fa fa-circle-o"></i>销售计划</a></li>
-            <li><a class="treeview-item " href="/jumps/marketing-forecast"><i class="icon fa fa-circle-o"></i>销售预测</a></li>
-            <li><a class="treeview-item " href="/jumps/marketing-perf"><i class="icon fa fa-circle-o"></i>销售绩效</a></li>
-            <li><a class="treeview-item " href="/jumps/chance-manage"><i class="icon fa fa-circle-o"></i>机会管理</a></li>
-            <li><a class="treeview-item " href="/jumps/contact-manage"><i class="icon fa fa-circle-o"></i>联系人管理</a></li>
-            <li><a class="treeview-item " href="/jumps/contend-manage"><i class="icon fa fa-circle-o"></i>竞争管理</a></li>
-            <li><a class="treeview-item " href="/jumps/marketing-analyze"><i class="icon fa fa-circle-o"></i>销售分析</a></li>
+            <li><a class="treeview-item" href="/jumps/marketing-plan.html"><i class="icon fa fa-circle-o"></i>销售计划</a></li>
+            <li><a class="treeview-item " href="/jumps/marketing-forecast.html"><i class="icon fa fa-circle-o"></i>销售预测</a></li>
+            <li><a class="treeview-item " href="/jumps/marketing-perf.html"><i class="icon fa fa-circle-o"></i>销售绩效</a></li>
+            <li><a class="treeview-item " href="/jumps/chance-manage.html"><i class="icon fa fa-circle-o"></i>机会管理</a></li>
+            <li><a class="treeview-item " href="/jumps/contact-manage.html"><i class="icon fa fa-circle-o"></i>联系人管理</a></li>
+            <li><a class="treeview-item " href="/jumps/contend-manage.html"><i class="icon fa fa-circle-o"></i>竞争管理</a></li>
+            <li><a class="treeview-item " href="/jumps/marketing-analyze.html"><i class="icon fa fa-circle-o"></i>销售分析</a></li>
           </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">客户管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
-            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
-            <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a></li>
-            <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
-            <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
-            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
-            <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
+            <li><a class="treeview-item" href="/jumps/client-resource.html"><i class="icon fa fa-circle-o"></i>客户资源管理</a></li>
+            <li><a class="treeview-item " href="/jumps/client-develop.html"><i class="icon fa fa-circle-o"></i>客户发展计划</a></li>
+            <li><a class="treeview-item " href="/jumps/client-value.html"><i class="icon fa fa-circle-o"></i>客户价值管理</a></li>
           </ul>
         </li>
-      </ul>
-
-    </aside>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">服务管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/jumps/serve-new.html"><i class="icon fa fa-circle-o"></i>服务创建</a></li>
+            <li><a class="treeview-item " href="/jumps/serve-allot.html"><i class="icon fa fa-circle-o"></i>服务分配</a></li>
+            <li><a class="treeview-item " href="/jumps/serve-dispose.html"><i class="icon fa fa-circle-o"></i>服务处理</a></li>
+          </ul>
+        </li>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">订单管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/jumps/chr-order.html"><i class="icon fa fa-circle-o"></i>代下订单</a></li>
+            <li><a class="treeview-item " href="/jumps/check-order.html"><i class="icon fa fa-circle-o"></i>服务分配</a></li>
+            <li><a class="treeview-item " href="/jumps/order-stats.html"><i class="icon fa fa-circle-o"></i>客户价值管理</a></li>
+          </ul>
+        </li>
+      </ul>    </aside>
     <main class="app-content">
       <div class="app-title">
         <div>
@@ -160,14 +157,14 @@
           <div class="tile">
             <div class="row container">
               <div class="col-lg-6" style="margin: 0 auto">
-                <form method="post" action="/addRole">
+                <form method="post" id="addform1" onsubmit="return addRole()">
                   <div class="form-group">
                     <label class="control-label" ><span style="color: red;">*</span>角色编码:</label>
-                    <input autofocus class="form-control"  type="text" name="rm_Code" >
+                    <input autofocus class="form-control"  type="text" name="rm_Code" id="rm_Code" >
                   </div>
                   <div class="form-group">
                     <label class="control-label"><span style="color: red;">*</span>角色名称：</label>
-                    <input  class="form-control"  type="text" name="rm_Name">
+                    <input  class="form-control"  type="text" name="rm_Name" id="rm_Name">
                   </div>
                   <div class="form-group">
                     <label class="control-label"><span style="color: red;">*</span>所属部门：</label>
@@ -179,7 +176,7 @@
                     <textarea class="form-control" id="exampleTextarea" rows="3" name="rm_Description"></textarea>
                   </div>
                   <div class="tile-footer">
-                    <button class="btn btn-primary" type="submit">添加</button>
+                    <button class="btn btn-primary" type="submit" id="sub">添加</button>
                     <button class="btn btn-danger" onclick="window.location.href='role-manage.html'" type="button">返回</button>
                   </div>
                 </form>
@@ -204,6 +201,8 @@
     <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
     <script type="text/javascript" src="/static/js/datedropper.min.js"></script>
     <script type="text/javascript" src="/static/js/dept/dept.js"></script>
+    <script type="text/javascript" src="/static/js/role/addrole.js"></script>
+    <script src="/static/js/bootstrap-notify.min.js" type="text/javascript"></script>
     <script type="text/javascript">
       /*  $('#mydatepicker').dcalendarpicker();
         $('#mydatepicker2').dcalendarpicker({
@@ -214,13 +213,6 @@
       $(function(){
           getDeptName();
       })
-
-        $("#pickdate").dateDropper({
-            animate: false,
-          /* format: 'Y-m-d',*/
-            format: 'Y-m',
-            maxYear: '2020'
-        });
     </script>
     <!--日期控件end-->
   </body>

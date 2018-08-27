@@ -42,6 +42,17 @@ public interface RoleManagementMapper {
      */
     int countRole(RoleManagement roleManagement);
 
-
+    /**
+     * 点击修改时，得到修改前的信息
+     * @param id
+     * @return
+     */
     RoleManagement selectOne(@Param("id")Integer id);
+
+    /**
+     * 判断编码或角色名称，是否存在
+     * @param
+     * @return
+     */
+    int selectExit(@Param("code") String Code ,@Param("name") String name,@Param("id") Integer id);
 }

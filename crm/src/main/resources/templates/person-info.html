@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
   <head>
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
@@ -98,16 +99,6 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
-            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
-            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
-            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
-          </ul>
-        </li>
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
         <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">系统管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/jumps/role-manage.html"><i class="icon fa fa-circle-o"></i>角色管理</a></li>
@@ -128,21 +119,28 @@
             <li><a class="treeview-item " href="/jumps/marketing-analyze.html"><i class="icon fa fa-circle-o"></i>销售分析</a></li>
           </ul>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">客户管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
-            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
-            <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a></li>
-            <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
-            <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
-            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
-            <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
+            <li><a class="treeview-item" href="/jumps/client-resource.html"><i class="icon fa fa-circle-o"></i>客户资源管理</a></li>
+            <li><a class="treeview-item " href="/jumps/client-develop.html"><i class="icon fa fa-circle-o"></i>客户发展计划</a></li>
+            <li><a class="treeview-item " href="/jumps/client-value.html"><i class="icon fa fa-circle-o"></i>客户价值管理</a></li>
           </ul>
         </li>
-      </ul>
-
-    </aside>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">服务管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/jumps/serve-new.html"><i class="icon fa fa-circle-o"></i>服务创建</a></li>
+            <li><a class="treeview-item " href="/jumps/serve-allot.html"><i class="icon fa fa-circle-o"></i>服务分配</a></li>
+            <li><a class="treeview-item " href="/jumps/serve-dispose.html"><i class="icon fa fa-circle-o"></i>服务处理</a></li>
+          </ul>
+        </li>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">订单管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="/jumps/chr-order.html"><i class="icon fa fa-circle-o"></i>代下订单</a></li>
+            <li><a class="treeview-item " href="/jumps/check-order.html"><i class="icon fa fa-circle-o"></i>服务分配</a></li>
+            <li><a class="treeview-item " href="/jumps/order-stats.html"><i class="icon fa fa-circle-o"></i>客户价值管理</a></li>
+          </ul>
+        </li>
+      </ul>    </aside>
 
     <main class="app-content">
       <div class="app-title">
@@ -164,49 +162,37 @@
                 <dt>
                   员工姓名:
                 </dt>
-                <dd>
-                  A description list is perfect for defining terms.
-                </dd>
+                <dd th:text="${session.emp.getE_Name()}"></dd>
                 <dt>
                   员工编号:
                 </dt>
-                <dd>
-                  Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
-                </dd>
+                <dd th:text="${session.emp.getE_Number()}"></dd>
                 <dt>
                   所在部门:
                 </dt>
-                <dd>
-                  Etiam
-                </dd>
+                <dd th:text="${session.emp.getDept().getDp_Name()}"></dd>
                 <dt>
                   当前状态：
                 </dt>
-                <dd>
-                  Fusce dapibus,
-                </dd>
+                <dd th:text="${session.emp.getE_State()}==0?'启用':'禁用'"></dd>
                 <dt>
                   系统角色：
                 </dt>
-                <dd>
-                  Fusce dapibus,
-                </dd>
+                <dd th:text="${session.emp.getRole().getRm_Name()}"></dd>
                 <dt>
                   创建时间：
                 </dt>
-                <dd>
-                  Fusce dapibus,
-                </dd>
+                <dd th:text=" ${#dates.format(session.emp.getE_CreationTime(), 'yyyy-MM-dd HH:mm:ss')}"></dd>
                 <dt>
-                  登录ID：<input value="fdsfsdf" readonly="readonly" id="updId" type="text"/> <button type="button"  onclick="updId(this)" class="btn  btn-danger ">修改</button>
+                  登录ID:
+                </dt>
+                <dd th:text="${session.emp.getE_LoginId()}"></dd>
+                <dt>
+                  手机号：<input th:value="${session.emp.getE_Phone()}" id="upPhone"  disabled="disabled" type="text"/> <button type="button"  onclick="upPhoneClick(this)"   class="btn  btn-danger " style="background-color: white;color: black;border-color:white" id="upP" >修改</button>
                 </dt>
                 <br/>
                 <dt>
-                  手机号：<input value="1311111111" id="updPwd" readonly type="text"/> <button type="button"  onclick="updPwd(this)"   class="btn  btn-danger ">修改</button>
-                </dt>
-                <br/>
-                <dt>
-                  <button type="button" onclick="window.location.href='upd-password.html'"  class="btn  btn-danger ">修改密码</button>
+                  <button type="button" onclick="window.location.href='upd-password.html'"  class="btn  btn-danger " style="background-color: white;color: black;border-color:white">修改密码</button>
                 </dt>
               </dl>
             </div>
@@ -219,6 +205,7 @@
     <script src="/static/js/popper.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/moment.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="/static/js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
@@ -227,31 +214,6 @@
     <script type="text/javascript" src="/static/js/dcalendar.picker.js"></script>
     <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
     <script type="text/javascript" t src="/static/js/datedropper.min.js"></script>
-    <script type="text/javascript">
-      /*  $('#mydatepicker').dcalendarpicker();
-        $('#mydatepicker2').dcalendarpicker({
-            format:'yyyy-mm-dd'
-        });
-        $('#mycalendar').dcalendar();
-*/
-        $("#pickdate").dateDropper({
-            animate: false,
-          /* format: 'Y-m-d',*/
-            format: 'Y-m',
-            maxYear: '2020'
-        });
-
-      function updId(obj){
-       $(obj).html("保存");
-        $("#updId").removeAttr("readonly");
-      }
-
-      function updPwd(obj){
-        $(obj).html("保存");
-        $("#updPwd").removeAttr("readonly");
-      }
-    </script>
-    <!--日期控件end-->
-
+    <script type="text/javascript" t src="/static/js/emp/empUp.js"></script>
   </body>
 </html>
