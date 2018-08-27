@@ -16,7 +16,7 @@ function format ( d ) {
         '</tr>'+
         '<tr>'+
         '<td>生日:</td>'+
-        '<td>'+d.cr_Birthday+'</td>'+
+        '<td>'+moment(d.cr_Birthday).format("YYYY-MM-DD")+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>类型:</td>'+

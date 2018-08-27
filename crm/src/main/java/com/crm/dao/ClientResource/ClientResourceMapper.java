@@ -1,6 +1,7 @@
 package com.crm.dao.ClientResource;
 
 import com.crm.entity.ClientResource;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -29,4 +30,13 @@ public interface ClientResourceMapper {
      * @throws Exception
      */
     int addClient(ClientResource clientResource) throws  Exception;
+
+    /**
+     * 查询最大的id
+     * @return
+     * @throws Exception
+     */
+    int selectMaxId() throws  Exception;
+
+    int selectOne(@Param("id") Integer id)throws  Exception;
 }

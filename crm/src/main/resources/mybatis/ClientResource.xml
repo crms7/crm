@@ -57,4 +57,8 @@
       #{cr_Birthday},#{cr_Phone},#{cr_WorkTelephone},#{cr_HomeTelephone},#{cr_Email},
       #{cr_Address},#{cr_Remark})
     </insert>
+    <select id="selectMaxId" resultType="_int">
+        SELECT MAX(cr_id) FROM client_Resource
+    </select>
+
 </mapper>

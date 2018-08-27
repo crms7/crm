@@ -1,6 +1,7 @@
 package com.crm.service.ClientResource;
 
 import com.crm.entity.ClientResource;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,4 +13,8 @@ public interface ClientResourceService {
     int countClient(Map map);
 
     int addClient(ClientResource clientResource);
+
+    int selectMaxId();
+
+    int selectOne(@Param("id") Integer id);
 }

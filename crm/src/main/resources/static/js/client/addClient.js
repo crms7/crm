@@ -1,3 +1,24 @@
+$("#pickdate").change(function(e) {
+    /**
+     * bootstrapValidator 与日期控件混合使用验证不了表单的解决方法：
+     * 在日期表单触发change方法时，执行刷新校验
+     * clientForm ：Form表单
+     * cr_Birthday：时间name属性
+     */
+    $('#clientForm').data('bootstrapValidator')
+        .updateStatus('cr_Birthday','NOT_VALIDATED',null)
+        .validateField('cr_Birthday');
+});
+$(function(){
+    $.ajax({
+        url:"/client/getCode",
+        type:"post",
+        dataType:"json",
+        success:function(data){
+           $("input[name='cr_ClientCode']").val(data);
+        }
+        });
+});
 /**
  * 添加用户
  * @returns {boolean}
@@ -105,7 +126,6 @@ $(function(){
         }
     }).on('success.form.bv',function(e) {
         e.preventDefault();
-        alert("123");
         addClient();
     })
 });

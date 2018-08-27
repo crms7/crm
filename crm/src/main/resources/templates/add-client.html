@@ -95,7 +95,7 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
         <div>
-          <p class="app-sidebar__user-name">欢迎xx</p>
+          <p class="app-sidebar__user-name">欢迎x</p>
           <p class="app-sidebar__user-designation"><span>部门：</span><span>角色：</span></p>
         </div>
       </div>
@@ -163,7 +163,7 @@
               <div class="col-lg-6">
                   <div class="form-group ">
                     <label class="control-label" >客户编码：</label>
-                    <input autofocus  class="form-control " name="cr_ClientCode" type="text" >
+                    <input  readonly="readonly"  class="form-control" name="cr_ClientCode" type="text" >
                   </div>
                 <div class="form-group ">
                   <label class="control-label"><span style="color: red">*</span>性别：</label>
@@ -182,7 +182,7 @@
                 </div>
                   <div class="form-group">
                     <label class="control-label" ><span style="color: red">*</span>手机：</label>
-                    <input   class="form-control" name="cr_Phone"  type="text" >
+                    <input autofocus  class="form-control" name="cr_Phone"  type="text" >
                   </div>
                   <div class="form-group">
                     <label class="control-label" >电子邮箱：</label>
@@ -250,26 +250,15 @@
     <script type="text/javascript" src="/static/js/timedropper.min.js"></script>
     <script type="text/javascript"  src="/static/js/datedropper.min.js"></script>
     <script type="text/javascript">
-        $("#pickdate").dateDropper({
-            animate: false,
-            format: 'Y-m-d',
-            maxYear: '2020'
-        }).change(function(e) {
-            /**
-             * bootstrapValidator 与日期控件混合使用验证不了表单的解决方法：
-             * 在日期表单触发change方法时，执行刷新校验
-             * clientForm ：Form表单
-             * cr_Birthday：时间name属性
-             */
-            $('#clientForm').data('bootstrapValidator')
-                .updateStatus('cr_Birthday','NOT_VALIDATED',null)
-                .validateField('cr_Birthday');
-        });
+
     </script>
     <!--日期控件end-->
 <script>
-
+    $("#pickdate").dateDropper({
+        animate: false,
+        format: 'Y-m-d',
+        maxYear: '2020'
+    })
 </script>
-
   </body>
 </html>

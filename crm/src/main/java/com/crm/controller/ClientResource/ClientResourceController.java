@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,5 +92,35 @@ public class ClientResourceController {
         clientResource.setCr_EntryPerson(emp.getE_Name());
         int i = clientResourceService.addClient(clientResource);
         return i;
+    }
+    public ModelAndView selectOne(ClientResource clientResource){
+        ModelAndView modelAndView=new ModelAndView();
+        Map map = new HashMap();
+        map.put("begin",1);
+        map.put("end",1);
+        map.put("client",clientResource);
+        List<ClientResource> clientResources = clientResourceService.selectClient(map);
+        modelAndView.setViewName("upd-client");
+        modelAndView.addObject("client",clientResources.get(0));
+        return modelAndView;
+    }
+    /**
+     * 获取客户表最大的id
+     * @return
+     */
+    @RequestMapping(value = "/getCode")
+    @ResponseBody
+    public Object getClientCode(){
+        //获取当前年月日
+        Date date=new Date();
+        //转换为stirng
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String format = sdf.format(date);
+        //去除 -
+        String replace = format.replace("-", "");
+        //获取到客户表最大id并加1
+        int maxId = clientResourceService.selectMaxId()+1;
+        //拼接
+        return replace+maxId;
     }
 }

@@ -59,4 +59,28 @@ public class ClientResourceServiceImpl implements ClientResourceService {
             return i;
         }
     }
+
+    @Override
+    public int selectMaxId() {
+        int i = 0;
+        try {
+            i = clientResourceMapper.selectMaxId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            return i;
+        }
+    }
+
+    @Override
+    public int selectOne(Integer id) {
+        int result = 0;
+        try {
+            result = clientResourceMapper.selectOne(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            return result;
+        }
+    }
 }
