@@ -1,4 +1,4 @@
-package com.crm.controller.roleManagementController;
+package com.crm.controller.rolemanagement;
 
 import com.crm.entity.Dept;
 import com.crm.entity.EmployeeInfo;
@@ -86,7 +86,7 @@ public class RoleManagementController {
      */
     @RequestMapping("/showUpInfo/{id}")
     public ModelAndView showUpInfo(@PathVariable("id") String id){
-        List<Dept> depts = deptService.selectAll(new HashMap());
+        List<Dept> depts = deptService.selectName();
         RoleManagement roleManagement = roleManagementService.selectOne(Integer.parseInt(id));
         mv.addObject("dept",depts);
         mv.addObject("role",roleManagement);

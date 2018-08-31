@@ -44,27 +44,31 @@
       <ul class="dropdown-menu settings-menu dropdown-menu-right">
         <li><a class="dropdown-item" href="/jumps/person-info.html"><i class="fa fa-user fa-lg"></i> 个人信息</a></li>
         <li><a class="dropdown-item" href="/exit"><i class="fa fa-sign-out fa-lg"></i> 退出</a></li>
+
       </ul>
     </li>
   </ul>
 </header>
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-<aside class="app-sidebar">
-  <div class="app-sidebar__user">
-    <div>
-      <p class="app-sidebar__user-name"  >欢迎您,<span th:text="${session.emp.getE_Name()}"></span></p>
-      <p class="app-sidebar__user-designation"><span >部门：<label th:text="${session.emp.getDept().getDp_Name()}" /></span></p>
-      <p> <span>角色：<label th:text="${session.emp.getRole().getRm_Name()}"/></span></p>
-    </div>
-  </div>
+<aside class="app-sidebar" >
+
+  <ul  class="app-menu" style="padding: 0px;margin-top: -16px;">
+    <li class="treeview is-expanded">
+      <ul class="treeview-menu" style="color: white;">
+        <li class="app-sidebar__user-name "><a class=" treeview-item">欢迎您：<span th:text="${session.emp.getE_Name()}"></span></a></li>
+        <li class="app-sidebar__user-name"><a class=" treeview-item" ><span >部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门：<span th:text="${session.emp.getDept().getDp_Name()}" /></span></a></li>
+        <li class="app-sidebar__user-name"><a class=" treeview-item" > <span>角&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：<span th:text="${session.emp.getRole().getRm_Name()}"/></span></a></li>
+      </ul>
+    </li>
+  </ul>
+
   <ul class="app-menu">
     <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">系统管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
       <ul class="treeview-menu">
         <li><a class="treeview-item" href="/jumps/role-manage.html"><i class="icon fa fa-circle-o"></i>角色管理</a></li>
         <li><a class="treeview-item " href="/jumps/dept-manage.html"><i class="icon fa fa-circle-o"></i>部门管理</a></li>
         <li><a class="treeview-item " href="/jumps/emp-manage.html"><i class="icon fa fa-circle-o"></i>员工管理</a></li>
-        <li><a class="treeview-item " href="/jumps/person-info.html"><i class="icon fa fa-circle-o"></i>个人信息</a></li>
         <li><a class="treeview-item " href="/jumps/data-dictionary.html"><i class="icon fa fa-circle-o"></i>数据字典</a></li>
       </ul>
     </li>
@@ -96,8 +100,8 @@
     <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">订单管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
       <ul class="treeview-menu">
         <li><a class="treeview-item" href="/jumps/chr-order.html"><i class="icon fa fa-circle-o"></i>代下订单</a></li>
-        <li><a class="treeview-item " href="/jumps/check-order.html"><i class="icon fa fa-circle-o"></i>服务分配</a></li>
-        <li><a class="treeview-item " href="/jumps/order-stat.html"><i class="icon fa fa-circle-o"></i>客户价值管理</a></li>
+        <li><a class="treeview-item " href="/jumps/check-order.html"><i class="icon fa fa-circle-o"></i>订单查询</a></li>
+        <li><a class="treeview-item " href="/jumps/order-stat.html"><i class="icon fa fa-circle-o"></i>订单统计</a></li>
       </ul>
     </li>
   </ul>    </aside>

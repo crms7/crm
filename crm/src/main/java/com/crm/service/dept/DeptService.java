@@ -7,5 +7,6 @@ import java.util.Map;
 
 public interface DeptService {
     List<Dept> selectAll(Map map);
+    List<Dept> selectName();
     int countDept(Dept dept);
 }

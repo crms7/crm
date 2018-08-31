@@ -123,7 +123,6 @@ function imgs(){
     } )
 }
 
-
 function getDeptName(){
     $.ajax({
         url:"/getDName",
@@ -142,6 +141,10 @@ function getDeptName(){
     })
 }
 
+function showupdept(){
+    window.location.href="/jumps/upd-dept"+$("input[name='d_id']:checked").val();
+    alert($("input[name='d_id']:checked").val());
+}
 
 $(".btn-success").on("click",function () {
     $('#datatable-responsive').DataTable().ajax.reload();

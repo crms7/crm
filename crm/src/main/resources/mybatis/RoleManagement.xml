@@ -31,15 +31,18 @@
         </where>
         limit #{begin},#{end}
     </select>
+
     <update id="updateRole" >
         UPDATE Role_management
         SET rm_code=#{rm_Code},rm_name=#{rm_Name},rm_lastTime=NOW(),rm_description=#{rm_Description} ,rm_departId=#{rm_DepartId} ,rm_Operator=#{rm_Operator}
         WHERE rm_id=#{rm_Id}
     </update>
+
     <insert id="insert">
         INSERT INTO Role_management(rm_id,rm_code,rm_name,rm_departId,rm_lastTime,rm_operator,rm_description)
         VALUES(DEFAULT ,#{rm_Code},#{rm_Name},#{rm_DepartId},NOW(),#{rm_Operator},#{rm_Description})
     </insert>
+
     <delete id="deleteRole">
         delete from Role_management where   rm_id=#{id}
     </delete>
@@ -47,6 +50,7 @@
     <select id="selectOne" resultType="RoleManagement">
         select * from Role_management where rm_id=#{id}
     </select>
+
     <select id="selectExit" resultType="_int">
          SELECT COUNT(1) FROM Role_management
          <where>

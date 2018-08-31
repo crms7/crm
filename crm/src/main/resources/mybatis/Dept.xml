@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.crm.dao.dept.DeptMapper">
+    <select id="selectName" resultType="Dept" >
+            select * from dept
+    </select>
+
     <select id="selectAll" resultType="Dept">
         select * from dept
         <where>
@@ -10,7 +14,7 @@
              dp_name=#{dp_Name}
          </if>
         </where>
-        limit 0,5
+        limit #{begin},#{end}
     </select>
     <select id="countDept" resultType="_int">
         select count(1) from dept

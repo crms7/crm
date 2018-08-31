@@ -26,7 +26,7 @@ public class DeptController {
     @RequestMapping("/getDName")
     @ResponseBody
     public Object getDeptName(){
-        List<Dept> dept = deptService.selectAll(new HashMap());
+        List<Dept> dept = deptService.selectName();
         return dept;
     }
 

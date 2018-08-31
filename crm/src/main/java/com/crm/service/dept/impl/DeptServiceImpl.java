@@ -20,6 +20,11 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
+    public List<Dept> selectName() {
+        return deptMapper.selectName();
+    }
+
+    @Override
     public int countDept(Dept dept) {
         return deptMapper.countDept(dept);
     }
