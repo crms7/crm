@@ -7,22 +7,35 @@ function upPhoneClick(obj){
     }
 }
 
-
 function upPhone(){
-    var phone=$("#upPhone").val();
     $.ajax({
         url:"/upEmp",
         type:"post",
         dataType:"json",
-        data:phone,
+        data:{
+            "e_Phone":$("#upPhone").val(),
+            "e_Id":$("#empIdi").val()
+        },
         success:function(data){
             if(data>0){
-                console.log("修改手机号成功");
+                $.notify({
+                    offset: "50",
+                    message: "修改成功"
+                },{
+                    type:"success"
+                });
             }else{
-                console.log("修改手机号失败");
+                $.notify({
+                    offset: "50",
+                    message: "修改失败"
+                },{
+                    type:"danger"
+                });
             }
         }
     })
     $("#upPhone").attr("disabled","disabled");
     $("#upP").html("修改");
 }
+
+

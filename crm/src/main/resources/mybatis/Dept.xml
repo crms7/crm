@@ -2,8 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.crm.dao.Dept.DeptMapper">
+<mapper namespace="com.crm.dao.dept.DeptMapper">
     <select id="selectAll" resultType="Dept">
         select * from dept
+        <where>
+         <if test="dp_Name!='' and dp_Name!=null">
+             dp_name=#{dp_Name}
+         </if>
+        </where>
+        limit 0,5
+    </select>
+    <select id="countDept" resultType="_int">
+        select count(1) from dept
+        <where>
+            <if test="dp_Name!='' and dp_Name!=null">
+                dp_name=#{dp_Name}
+            </if>
+        </where>
     </select>
 </mapper>

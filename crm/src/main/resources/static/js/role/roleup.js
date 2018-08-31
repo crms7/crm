@@ -12,8 +12,8 @@ $(function(){
                         message: '输入的角色编码不能为空!'
                     },
                     regexp: {
-                        regexp:  /^[A-Za-z]+$/,
-                        message: '角色编码只能是字母'
+                        regexp:  /^[A-Za-z]{2,8}$/,
+                        message: '角色编码只能是2-8位字母'
                     },
                     remote: {
                                 message: '编码已存在',
@@ -85,57 +85,3 @@ function  upRoleInfo(){
         })
     return false;
 }
-// var flag_code=false;
-//     $("#rm_Code").blur(function (){
-//         var code  = ;
-//         var id=$("#roleId").val();
-//         $.ajax({
-//             url:"/roleExits",
-//             type:"post",
-//             dataType:"json",
-//             data:{code:code,id:id},
-//             success:function(data){
-//                 console.log(data)
-//                 if(data>0){
-//                     $.notify({
-//                         offset: "50",
-//                         message: "角色编码已存在"
-//                     },{
-//                         type:"danger"
-//                     });
-//                     flag_code= false;
-//                 }else{
-//                     flag_code= true;
-//                 }
-//             }
-//         })
-//     })
-// var flag_name=false;
-// $("#rm_Name").blur(function(){
-//     var name  = $("#rm_Name").val();
-//     var id=$("#roleId").val();
-//     $.ajax({
-//         url:"/roleExits",
-//         type:"post",
-//         dataType:"json",
-//         data:{name:name,id:id},
-//         success:function(data){
-//             if(data>0){
-//                 $.notify({
-//                     offset: "50",
-//                     message: "角色名称已存在"
-//                 },{
-//                     type:"danger"
-//                 });
-//                 flag_name=false;
-//             }else{
-//                 flag_name=true;
-//             }
-//         }
-//     })
-// })
-
-
-
-
-

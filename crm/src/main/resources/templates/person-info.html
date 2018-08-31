@@ -158,6 +158,7 @@
         <div class="container">
           <div class="row clearfix">
             <div class="col-md-12 column">
+              <input hidden="hidden"  id="empIdi" th:value="${session.emp.getE_Id()}"/>
               <dl>
                 <dt>
                   员工姓名:
@@ -188,11 +189,11 @@
                 </dt>
                 <dd th:text="${session.emp.getE_LoginId()}"></dd>
                 <dt>
-                  手机号：<input th:value="${session.emp.getE_Phone()}" id="upPhone"  disabled="disabled" type="text"/> <button type="button"  onclick="upPhoneClick(this)"   class="btn  btn-danger " style="background-color: white;color: black;border-color:white" id="upP" >修改</button>
+                  手机号：<input th:value="${session.emp.getE_Phone()}" id="upPhone" name="iphone"  disabled="disabled" type="text"/> <button type="button"  onclick="upPhoneClick(this)"   class="btn  btn-danger " style="background-color: white;color: black;border-color:white" id="upP" >修改</button>
                 </dt>
                 <br/>
                 <dt>
-                  <button type="button" onclick="window.location.href='upd-password.html'"  class="btn  btn-danger " style="background-color: white;color: black;border-color:white">修改密码</button>
+                  <button type="button" onclick="window.location.href='/jumps/upd-password'"  class="btn  btn-danger " style="background-color: white;color: black;border-color:white">修改密码</button>
                 </dt>
               </dl>
             </div>

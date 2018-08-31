@@ -73,10 +73,10 @@ var showRoleList= $('#datatable-responsive').DataTable({
         { "data": "rm_Id" },
         {"data": "rm_Id",
             "render": function (data, type, full, meta) {
-                if(data==1){
-                    return  '<input type="radio" class="checkchild" name="r_id"  value='+data+' checked="checked" onclick="getRoleId()"  />';
+                if(meta.row==0){
+                    return  '<input type="radio" class="checkchild" name="r_id"  value='+data+' checked="checked"   />';
                 }else{
-                    return  '<input type="radio" class="checkchild" name="r_id"  value='+data+' onclick="getRoleId()" />';
+                    return  '<input type="radio" class="checkchild" name="r_id"  value='+data+' onclick="getRoleId()"  />';
                 }
             },"bSortable": false},
         { "data": "rm_Name" },
@@ -90,8 +90,7 @@ var showRoleList= $('#datatable-responsive').DataTable({
                 return  moment(data).format("YYYY-MM-DD HH:mm:ss");
             }},
         {"data":"rm_Operator"},
-        { "data": "rm_Description",defaultContent:""},
-
+        { "data": "rm_Description",defaultContent:""}
     ],
     "oLanguage" : { // 国际化配置
         "sProcessing": "正在获取数据，请稍后...",
@@ -135,9 +134,8 @@ function imgs(){
  * 删除角色
  */
 function delRole(){
-    var did = $("#roleId").val();
     $.ajax({
-        url:"/delRole/"+did,
+        url:"/delRole/"+$("input[name='r_id']:checked").val(),
         type:"post",
         dataType:"json",
         success:function(data){
@@ -155,12 +153,10 @@ function delRole(){
     })
 }
 
-function getRoleId(){
-    $("#roleId").val($("input[name='r_id']:checked").val());
-}
+
 
 function showUpInfo(){
-    window.location.href="/showUpInfo/"+$("#roleId").val();
+    window.location.href="/showUpInfo/"+$("input[name='r_id']:checked").val();
 }
 
 

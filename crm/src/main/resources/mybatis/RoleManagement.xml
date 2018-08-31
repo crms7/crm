@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.crm.dao.RoleManagement.RoleManagementMapper">
+<mapper namespace="com.crm.dao.roleManagement.RoleManagementMapper">
 
     <resultMap id="roleMap" type="RoleManagement">
         <id property="rm_Id" column="rm_id"></id>
@@ -50,12 +50,14 @@
     <select id="selectExit" resultType="_int">
          SELECT COUNT(1) FROM Role_management
          <where>
-                  rm_id!=#{id}
-             <if test="code!='' and code!=null">
-                 rm_code=#{code}  or
+             <if test="id!=null and id!=''">
+                 AND  rm_id!=#{id}
              </if>
-             <if test="name!='' and name!=null">
-                 name=#{name}  AND
+             <if test=" code!='' and  code!=null">
+                 AND  rm_code=#{code}
+             </if>
+             <if test=" name!='' and  name!=null">
+                 AND  rm_name =#{name}
              </if>
          </where>
     </select>

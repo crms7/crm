@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/dist/css/bootstrapValidator.css"/>
+    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.css"/>
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>用户登录</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum=1.0,user-scalable=no">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum=1.0,user-scalable=no">-->
   </head>
   <body>
     <section class="material-half-bg">
@@ -21,19 +24,18 @@
         <h2>客户关系管理系统</h2>
       </div>
       <div class="login-box">
-        <form class="login-form" action="/loginTo" method="post">
+        <form class="login-form"  id="loginform"  method="post">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>登陆</h3>
-          <label style="color:red" th:text="${msg}"/>
           <div class="form-group">
             <label class="control-label">用户名</label>
-            <input class="form-control" id="user" type="text" placeholder="请输入用户名" name="e_LoginId" required autofocus>
+            <input class="form-control" id="user" type="text" placeholder="请输入用户名" name="e_LoginId"  >
           </div>
           <div class="form-group">
             <label class="control-label">密码</label>
-            <input class="form-control" type="password" placeholder="请输入密码" name="e_Pwd" required>
+            <input class="form-control" type="password" placeholder="请输入密码" name="e_Pwd"  >
           </div>
           <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block" id="login" type="submit"><i class="fa fa-sign-in fa-lg fa-fw"></i>登陆</button>
+            <button class="btn btn-primary btn-block" id="login" type="submit" ><i class="fa fa-sign-in fa-lg fa-fw"></i>登陆</button>
           </div>
         </form>
       </div>
@@ -45,35 +47,11 @@
     <script src="/static/js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="/static/js/plugins/pace.min.js"></script>
+    <!--验证插件-->
+    <script type="text/javascript" src="/static/dist/js/bootstrapValidator.js"></script>
     <script src="/static/js/cookie.js"></script>
-    <!--<script type="text/javascript">-->
-      <!--// 翻转(Flipbox)-->
-      <!--$('.login-content [data-toggle="flip"]').click(function() {-->
-      	<!--$('.login-box').toggleClass('flipped');-->
-      	<!--return false;-->
-      <!--});-->
-      <!--$(document).ready(function () {-->
-      	<!--var lg = $("#login"), usr = $[("#user"), psw = $(".form-control:password")-->
-      	<!--lg.click(function () {-->
-      		<!--if ($(".animated-checkbox input")[0].checked) {	//记住登陆-->
-      			<!--air_cookie.set("remember", true, 7)-->
-      			<!--air_cookie.set("user", usr.val(), 7)-->
-      			<!--air_cookie.set("pass", psw.val(), 7)-->
-      		<!--} else {-->
-      			<!--air_cookie.del(["remember", "user", "pass"])-->
-      		<!--}-->
-      		<!--$.post()-->
-      <!---->
-      	<!--});-->
-      	<!--if (air_cookie.get("remember") === "true") {	//自动填充-->
-      		<!--$(".animated-checkbox input")[0].checked = true;-->
-      		<!--usr.val(air_cookie.get("user"));-->
-      		<!--psw.val(air_cookie.get("pass"));-->
-      		<!--usr[0].onchange()-->
-      		<!--psw[0].onchange()-->
-      	<!--}-->
-      	<!--;-->
-      <!--})-->
-    <!--</script>-->
+    <script type="text/javascript" src="/static/js/emp/login.js"></script>
+    <!--消息框-->
+    <script src="/static/js/bootstrap-notify.min.js" type="text/javascript"></script>
   </body>
 </html>
