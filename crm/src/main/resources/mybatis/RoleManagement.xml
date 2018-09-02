@@ -9,6 +9,9 @@
         <association property="dept" javaType="Dept">
             <id property="dp_Id" column="d_id"></id>
         </association>
+        <collection property="employeeInfo" javaType="EmployeeInfo">
+            <id property="e_Id" column="e_id"></id>
+        </collection>
     </resultMap>
 
     <select id="countRole" resultType="_int">
@@ -22,12 +25,12 @@
     </select>
 
     <select id="selectAll" resultMap="roleMap">
-        SELECT *, d.dp_id as d_id FROM Role_management r , dept d
+        SELECT *, d.dp_id as d_id , e.e_id as e_id FROM Role_management r , dept d ,Employee_info e
         <where>
             <if test="rm_Name!=null and rm_Name!=''">
                 and r.rm_name like '%${rm_Name}%'
             </if>
-            and  r.rm_departId=d.dp_id
+            and  r.rm_departId=d.dp_id and e.e_id=r.rm_operator
         </where>
         limit #{begin},#{end}
     </select>

@@ -16,7 +16,7 @@ public class EmployeeInfo {
   private Date e_CreationTime;
   private String e_Phone;
   private Long e_Sex;
-  private String e_Operator;
+  private Integer e_Operator;
   private String e_Description;
   private Dept dept;
   private RoleManagement role;
@@ -126,11 +126,11 @@ public class EmployeeInfo {
     this.e_Sex = e_Sex;
   }
 
-  public String getE_Operator() {
+  public Integer getE_Operator() {
     return e_Operator;
   }
 
-  public void setE_Operator(String e_Operator) {
+  public void setE_Operator(Integer e_Operator) {
     this.e_Operator = e_Operator;
   }
 

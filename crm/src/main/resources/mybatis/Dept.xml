@@ -3,16 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.crm.dao.dept.DeptMapper">
+    <resultMap id="deptMap" type="Dept">
+        <id column="dp_id" property="dp_Id"></id>
+        <collection property="employeeInfo" javaType="EmployeeInfo">
+            <id column="e_id" property="e_Id"></id>
+        </collection>
+    </resultMap>
+
+
     <select id="selectName" resultType="Dept" >
             select * from dept
     </select>
 
-    <select id="selectAll" resultType="Dept">
-        select * from dept
+    <select id="selectAll" resultMap="deptMap">
+        select * , e.e_id AS e_id
+        from dept   d, Employee_info e
         <where>
-         <if test="dp_Name!='' and dp_Name!=null">
-             dp_name=#{dp_Name}
+         <if test="dept.dp_Name!='' and dept.dp_Name!=null">
+            and  d.dp_name  like '%${dept.dp_Name}%'
          </if>
+            and d.dp_operator=e.`e_id`
         </where>
         limit #{begin},#{end}
     </select>

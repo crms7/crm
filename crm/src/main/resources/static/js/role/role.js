@@ -24,7 +24,7 @@ function format (d) {
         '</tr>'+
         '<tr>'+
         '<td>操作人:</td>'+
-        '<td>'+d.rm_Operator+'</td>'+
+        '<td>'+d.employeeInfo.e_Name+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>备注说明:</td>'+
@@ -89,7 +89,11 @@ var showRoleList= $('#datatable-responsive').DataTable({
             "render": function (data, type, full, meta) {
                 return  moment(data).format("YYYY-MM-DD HH:mm:ss");
             }},
-        {"data":"rm_Operator"},
+        {"data":"employeeInfo",
+            "render":function(data,type,full,meta){
+                    return data.e_Name;
+            }
+        },
         { "data": "rm_Description",defaultContent:""}
     ],
     "oLanguage" : { // 国际化配置
@@ -163,6 +167,8 @@ function showUpInfo(){
 $(".btn-success").on("click",function () {
     $('#datatable-responsive').DataTable().ajax.reload();
 });
+
+//根据条件重新绘制
 $("#queryRoleName").on("click",function () {
     $('#datatable-responsive').DataTable().ajax.reload();
 });

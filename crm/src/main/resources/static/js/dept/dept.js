@@ -20,7 +20,7 @@ function format (d) {
         '</tr>'+
         '<tr>'+
         '<td>操作人:</td>'+
-        '<td>'+d.dp_Operator+'</td>'+
+        '<td>'+d.employeeInfo.e_Name+'</td>'+
         '</tr>'+
         '<tr>'+
         '<tr>'+
@@ -44,7 +44,10 @@ var showRoleList= $('#datatable-responsive').DataTable({
     "ajax": {
         url:"/showDepts",
         "type": "POST",
-        "dataType" : "JSON"
+        "dataType" : "JSON",
+        "data": function (datas) {
+            datas.dp_Name=$("#dp_Name").val();
+        }
     },
     lengthMenu: [ //自定义分页长度
         [ 5, 10, 50 ],
@@ -81,7 +84,11 @@ var showRoleList= $('#datatable-responsive').DataTable({
             "render": function (data, type, full, meta) {
                 return  moment(data).format("YYYY-MM-DD HH:mm:ss");
             }},
-        {"data":"dp_Operator"},
+        {"data":"employeeInfo",
+            "render":function(data,type,full,meta){
+            return data.e_Name;
+            }
+        },
         { "data": "dp_Description",defaultContent:""}
     ],
     "oLanguage" : { // 国际化配置
@@ -152,6 +159,11 @@ $(".btn-success").on("click",function () {
 
 $('#datatable-fixed-header').DataTable({
     fixedHeader: true
+});
+
+//根据条件重新绘制
+$("#queryDeptName").on("click",function () {
+    $('#datatable-responsive').DataTable().ajax.reload();
 });
 
 

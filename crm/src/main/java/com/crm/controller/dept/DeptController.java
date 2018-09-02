@@ -37,12 +37,12 @@ public class DeptController {
             @RequestParam(value = "draw", required = false, defaultValue = "0") String draw,
             @RequestParam(value = "start", required = false, defaultValue = "0") Integer start,
             @RequestParam(value = "length", required = false, defaultValue = "5") Integer length,
-            @RequestParam(value = "rm_Name", required = false, defaultValue = "")  String rm_Name
+            @RequestParam(value = "dp_Name", required = false, defaultValue = "")  String dp_Name
     ){
         Map map = new HashMap();
         map.put("begin",start);
         map.put("end",length);
-        map.put("rm_Name",rm_Name);
+        map.put("dept",dept);
         Page<Dept> pages = new Page<Dept>();
         int countDept = deptService.countDept(dept); //得到角色表总记录数
         List<Dept> depts = deptService.selectAll(map);

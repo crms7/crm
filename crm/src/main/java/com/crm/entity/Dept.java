@@ -9,10 +9,18 @@ public class Dept {
   private String dp_Code;
   private String dp_Name;
   private Date dp_LastTime;
-  private String dp_Operator;
+  private Integer dp_Operator;
   private String dp_DeptProfile;
   private String dp_Description;
+  private EmployeeInfo employeeInfo;
 
+  public EmployeeInfo getEmployeeInfo() {
+    return employeeInfo;
+  }
+
+  public void setEmployeeInfo(EmployeeInfo employeeInfo) {
+    this.employeeInfo = employeeInfo;
+  }
 
   public Long getDp_Id() {
     return dp_Id;
@@ -46,11 +54,11 @@ public class Dept {
     this.dp_LastTime = dp_LastTime;
   }
 
-  public String getDp_Operator() {
+  public Integer getDp_Operator() {
     return dp_Operator;
   }
 
-  public void setDp_Operator(String dp_Operator) {
+  public void setDp_Operator(Integer dp_Operator) {
     this.dp_Operator = dp_Operator;
   }
 

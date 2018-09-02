@@ -60,7 +60,7 @@ public class RoleManagementController {
     @ResponseBody
     public Object add(RoleManagement roleManagement, HttpSession session){
             EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
-        roleManagement.setRm_Operator(emp.getE_Name());
+        roleManagement.setRm_Operator(emp.getE_Id().intValue());
         int num = roleManagementService.insert(roleManagement);
         return num;
     }
@@ -74,7 +74,8 @@ public class RoleManagementController {
     @ResponseBody
     public Object update(RoleManagement roleManagement,HttpSession session){
         EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
-        roleManagement.setRm_Operator(emp.getE_Name());
+        roleManagement.setRm_Operator(emp.getE_Id().intValue());
+
         int i = roleManagementService.updateRole(roleManagement);
         return i;
     }
