@@ -13,7 +13,12 @@ public interface ClientResourceService {
 
     int addClient(ClientResource clientResource);
 
-    int selectMaxId();
+    String selectMaxId();
 
     int selectOne(@Param("id") Integer id);
+
+    int changeClient(ClientResource clientResource);
+
+    int selectClientId(String clientCode);
+
 }

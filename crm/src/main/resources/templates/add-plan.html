@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
@@ -32,79 +32,78 @@
     </style>
   </head>
   <body class="app sidebar-mini rtl">
-    <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="/jumps/index">Welcome</a>
-      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-      <!-- Navbar Right Menu-->
-      <ul class="app-nav">
-        <li class="app-search">
-        </li>
-        <!-- User Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-          <ul class="dropdown-menu settings-menu dropdown-menu-right">
-            <li><a class="dropdown-item" href="/jumps/person-info.html"><i class="fa fa-user fa-lg"></i> 个人信息</a></li>
-            <li><a class="dropdown-item" href="/exit"><i class="fa fa-sign-out fa-lg"></i> 退出</a></li>
+  <!-- Navbar-->
+  <header class="app-header"><a class="app-header__logo" href="/jumps/index">Welcome</a>
+    <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+    <!-- Navbar Right Menu-->
+    <ul class="app-nav">
+      <li class="app-search">
+      </li>
+      <!-- User Menu-->
+      <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+        <ul class="dropdown-menu settings-menu dropdown-menu-right">
+          <li><a class="dropdown-item" href="/jumps/person-info.html"><i class="fa fa-user fa-lg"></i> 个人信息</a></li>
+          <li><a class="dropdown-item" href="/exit"><i class="fa fa-sign-out fa-lg"></i> 退出</a></li>
+        </ul>
+      </li>
+    </ul>
+  </header>
+  <!-- Sidebar menu-->
+  <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+  <aside class="app-sidebar" >
 
-          </ul>
-        </li>
-      </ul>
-    </header>
-    <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-    <aside class="app-sidebar" >
+    <ul  class="app-menu" style="padding: 0px;margin-top: -16px;">
+      <li class="treeview is-expanded">
+        <ul class="treeview-menu" style="color: white;">
+          <li class="app-sidebar__user-name "><a class=" treeview-item">欢迎您：<span th:text="${session.emp.getE_Name()}"></span></a></li>
+          <li class="app-sidebar__user-name"><a class=" treeview-item" ><span >部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门：<span th:text="${session.emp.getDept().getDp_Name()}" /></span></a></li>
+          <li class="app-sidebar__user-name"><a class=" treeview-item" > <span>角&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：<span th:text="${session.emp.getRole().getRm_Name()}"/></span></a></li>
+        </ul>
+      </li>
+    </ul>
 
-      <ul  class="app-menu" style="padding: 0px;margin-top: -16px;">
-        <li class="treeview is-expanded">
-          <ul class="treeview-menu" style="color: white;">
-            <li class="app-sidebar__user-name "><a class=" treeview-item">欢迎您：<span th:text="${session.emp.getE_Name()}"></span></a></li>
-            <li class="app-sidebar__user-name"><a class=" treeview-item" ><span >部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门：<span th:text="${session.emp.getDept().getDp_Name()}" /></span></a></li>
-            <li class="app-sidebar__user-name"><a class=" treeview-item" > <span>角&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：<span th:text="${session.emp.getRole().getRm_Name()}"/></span></a></li>
-          </ul>
-        </li>
-      </ul>
-
-      <ul class="app-menu">
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">系统管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/jumps/role-manage.html"><i class="icon fa fa-circle-o"></i>角色管理</a></li>
-            <li><a class="treeview-item " href="/jumps/dept-manage.html"><i class="icon fa fa-circle-o"></i>部门管理</a></li>
-            <li><a class="treeview-item " href="/jumps/emp-manage.html"><i class="icon fa fa-circle-o"></i>员工管理</a></li>
-            <li><a class="treeview-item " href="/jumps/data-dictionary.html"><i class="icon fa fa-circle-o"></i>数据字典</a></li>
-          </ul>
-        </li>
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">销售管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/jumps/marketing-plan.html"><i class="icon fa fa-circle-o"></i>销售计划</a></li>
-            <li><a class="treeview-item " href="/jumps/marketing-forecast.html"><i class="icon fa fa-circle-o"></i>销售预测</a></li>
-            <li><a class="treeview-item " href="/jumps/marketing-perf.html"><i class="icon fa fa-circle-o"></i>销售绩效</a></li>
-            <li><a class="treeview-item " href="/jumps/chance-manage.html"><i class="icon fa fa-circle-o"></i>机会管理</a></li>
-            <li><a class="treeview-item " href="/jumps/contact-manage.html"><i class="icon fa fa-circle-o"></i>联系人管理</a></li>
-            <li><a class="treeview-item " href="/jumps/contend-manage.html"><i class="icon fa fa-circle-o"></i>竞争管理</a></li>
-            <li><a class="treeview-item " href="/jumps/marketing-analyze.html"><i class="icon fa fa-circle-o"></i>销售分析</a></li>
-          </ul>
-        </li>
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">客户管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/jumps/client-resource.html"><i class="icon fa fa-circle-o"></i>客户资源管理</a></li>
-            <li><a class="treeview-item " href="/jumps/client-develop.html"><i class="icon fa fa-circle-o"></i>客户发展计划</a></li>
-            <li><a class="treeview-item " href="/jumps/client-value.html"><i class="icon fa fa-circle-o"></i>客户价值管理</a></li>
-          </ul>
-        </li>
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">服务管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/jumps/serve-new.html"><i class="icon fa fa-circle-o"></i>服务创建</a></li>
-            <li><a class="treeview-item " href="/jumps/serve-allot.html"><i class="icon fa fa-circle-o"></i>服务分配</a></li>
-            <li><a class="treeview-item " href="/jumps/serve-dispose.html"><i class="icon fa fa-circle-o"></i>服务处理</a></li>
-          </ul>
-        </li>
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">订单管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/jumps/chr-order.html"><i class="icon fa fa-circle-o"></i>代下订单</a></li>
-            <li><a class="treeview-item " href="/jumps/check-order.html"><i class="icon fa fa-circle-o"></i>订单查询</a></li>
-            <li><a class="treeview-item " href="/jumps/order-stat.html"><i class="icon fa fa-circle-o"></i>订单统计</a></li>
-          </ul>
-        </li>
-      </ul>    </aside>
+    <ul class="app-menu">
+      <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">系统管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a class="treeview-item" href="/jumps/role-manage.html"><i class="icon fa fa-circle-o"></i>角色管理</a></li>
+          <li><a class="treeview-item " href="/jumps/dept-manage.html"><i class="icon fa fa-circle-o"></i>部门管理</a></li>
+          <li><a class="treeview-item " href="/jumps/emp-manage.html"><i class="icon fa fa-circle-o"></i>员工管理</a></li>
+          <li><a class="treeview-item " href="/jumps/data-dictionary.html"><i class="icon fa fa-circle-o"></i>数据字典</a></li>
+        </ul>
+      </li>
+      <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">销售管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a class="treeview-item" href="/jumps/marketing-plan.html"><i class="icon fa fa-circle-o"></i>销售计划</a></li>
+          <li><a class="treeview-item " href="/jumps/marketing-forecast.html"><i class="icon fa fa-circle-o"></i>销售预测</a></li>
+          <li><a class="treeview-item " href="/jumps/marketing-perf.html"><i class="icon fa fa-circle-o"></i>销售绩效</a></li>
+          <li><a class="treeview-item " href="/jumps/chance-manage.html"><i class="icon fa fa-circle-o"></i>机会管理</a></li>
+          <li><a class="treeview-item " href="/jumps/contact-manage.html"><i class="icon fa fa-circle-o"></i>联系人管理</a></li>
+          <li><a class="treeview-item " href="/jumps/contend-manage.html"><i class="icon fa fa-circle-o"></i>竞争管理</a></li>
+          <li><a class="treeview-item " href="/jumps/marketing-analyze.html"><i class="icon fa fa-circle-o"></i>销售分析</a></li>
+        </ul>
+      </li>
+      <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">客户管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a class="treeview-item" href="/jumps/client-resource.html"><i class="icon fa fa-circle-o"></i>客户资源管理</a></li>
+          <li><a class="treeview-item " href="/jumps/client-develop.html"><i class="icon fa fa-circle-o"></i>客户发展计划</a></li>
+          <li><a class="treeview-item " href="/jumps/client-value.html"><i class="icon fa fa-circle-o"></i>客户价值管理</a></li>
+        </ul>
+      </li>
+      <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">服务管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a class="treeview-item" href="/jumps/serve-new.html"><i class="icon fa fa-circle-o"></i>服务创建</a></li>
+          <li><a class="treeview-item " href="/jumps/serve-allot.html"><i class="icon fa fa-circle-o"></i>服务分配</a></li>
+          <li><a class="treeview-item " href="/jumps/serve-dispose.html"><i class="icon fa fa-circle-o"></i>服务处理</a></li>
+        </ul>
+      </li>
+      <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">订单管理</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a class="treeview-item" href="/jumps/chr-order.html"><i class="icon fa fa-circle-o"></i>代下订单</a></li>
+          <li><a class="treeview-item " href="/jumps/check-order.html"><i class="icon fa fa-circle-o"></i>订单查询</a></li>
+          <li><a class="treeview-item " href="/jumps/order-stat.html"><i class="icon fa fa-circle-o"></i>订单统计</a></li>
+        </ul>
+      </li>
+    </ul>    </aside>
     <main class="app-content">
       <div class="app-title">
         <div>

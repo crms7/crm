@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.dao.clientvalue.ClientValueMapper">
+    <resultMap id="clientValueMap" type="ClientValue" autoMapping="true">
+        <id property="cv_Id" column="cv_Id"></id>
+        <association property="dataDictionary" javaType="DataDictionary" >
+            <id  property="id" column="id"></id>
+        </association>
+        <association property="employeeInfo" javaType="EmployeeInfo">
+            <id  property="e_Id" column="e_Id"></id>
+        </association>
+        <association property="clientResource" javaType="ClientResource">
+            <id  property="cr_Id" column="cr_Id"></id>
+        </association>
+    </resultMap>
+    <select id="selectClientValue" resultMap="clientValueMap">
+         SELECT cv.*,dd.`valueName`,emp.e_name,cr.`cr_clientName` FROM client_value AS cv ,data_dictionary AS  dd
+        ,Employee_Info AS emp,client_Resource cr
+        <trim prefix="where" prefixOverrides="and">
+        <if test="value.cr_Name!=null and value.cr_Name!=''">
+           AND  cr.cr_ClientName like CONCAT('%',#{value.cr_Name},'%')
+        </if>
+        <if test="value.cv_ClientType!=null">
+           AND cv.cv_ClientType=#{value.cv_ClientType}
+        </if>
+        AND (dd.`valueId`=cv.`cv_clientType` AND dd.typeName='客户类型')
+        AND cv.cv_serverRepresent=emp.e_id
+	    AND cv.`cv_nameId`=cr.`cr_id`
+        </trim>
+        limit #{begin},#{end}
+    </select>
+    <select id="countClientValue" resultType="_int">
+        select count(*) from client_value cv,client_resource cr
+        <trim prefix="where" prefixOverrides="and">
+        <if test="value.cr_Name!=null and value.cr_Name!=''">
+            AND  cr.cr_ClientName like CONCAT('%',#{value.cr_Name},'%')
+        </if>
+        <if test="value.cv_ClientType!=null">
+            AND cv.cv_ClientType=#{value.cv_ClientType}
+        </if>
+            AND cr.`cr_id`=cv.`cv_nameId`
+        </trim>
+    </select>
+</mapper>

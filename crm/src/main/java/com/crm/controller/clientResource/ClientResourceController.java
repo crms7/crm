@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -88,38 +87,61 @@ public class ClientResourceController {
     @ResponseBody
     public Object addClient(ClientResource clientResource, HttpSession session){
         EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
-        clientResource.setCr_EntryPerson(emp.getE_Name());
+        clientResource.setCr_EntryPerson(emp.getE_Id());
         int i = clientResourceService.addClient(clientResource);
         return i;
     }
-    public ModelAndView selectOne(ClientResource clientResource){
+
+    /**
+     * 获取单个客户
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/getOneClient/{id}")
+    public ModelAndView selectOne(@PathVariable Long id){
         ModelAndView modelAndView=new ModelAndView();
+        ClientResource clientResource =new ClientResource();
+        clientResource.setCr_Id(id);
         Map map = new HashMap();
-        map.put("begin",1);
-        map.put("end",1);
+        map.put("begin",0);
+        map.put("end",2);
         map.put("client",clientResource);
         List<ClientResource> clientResources = clientResourceService.selectClient(map);
+        //获取下拉框的数据
+        List<DataDictionary> dataDict = dataDictService.getDataDict(new DataDictionary());
         modelAndView.setViewName("upd-client");
+        modelAndView.addObject("dataDict",dataDict);
         modelAndView.addObject("client",clientResources.get(0));
         return modelAndView;
     }
+
     /**
-     * 获取客户表最大的id
+     * 修改客户信息
+     * @param clientResource
+     * @return
+     */
+    @RequestMapping(value = "/changeClient")
+    @ResponseBody
+    public Object changeClient(ClientResource clientResource,HttpSession session){
+        EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
+         // 最后操作时间
+        clientResource.setCr_EnterTime(new Date());
+        // 分配状态   默认为1（未分配）
+        clientResource.setCr_AllotStatus(1L);
+        //操作人
+        clientResource.setCr_EntryPerson(emp.getE_Id());
+        //执行修改
+        int result= clientResourceService.changeClient(clientResource);
+        return result;
+    }
+    /**
+     * 自获取客户下一个编码
      * @return
      */
     @RequestMapping(value = "/getCode")
     @ResponseBody
     public Object getClientCode(){
-        //获取当前年月日
-        Date date=new Date();
-        //转换为stirng
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String format = sdf.format(date);
-        //去除 -
-        String replace = format.replace("-", "");
-        //获取到客户表最大id并加1
-        int maxId = clientResourceService.selectMaxId()+1;
-        //拼接
-        return replace+maxId;
+        String clientCode = clientResourceService.selectMaxId();
+        return clientCode;
     }
 }

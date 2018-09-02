@@ -6,6 +6,8 @@ import com.crm.service.clientResource.ClientResourceService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +25,7 @@ public class ClientResourceServiceImpl implements ClientResourceService {
     public List<ClientResource> selectClient(Map map) {
         List<ClientResource> clientResources = null;
         try {
+
             clientResources = clientResourceMapper.selectClient(map);
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,14 +64,27 @@ public class ClientResourceServiceImpl implements ClientResourceService {
     }
 
     @Override
-    public int selectMaxId() {
-        int i = 0;
+    public String selectMaxId() {
+        String result="";
         try {
-            i = clientResourceMapper.selectMaxId();
+            int maxId = clientResourceMapper.selectMaxId()+1;
+            //获取当前年月日
+            Date date=new Date();
+            //转换为stirng
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String format = sdf.format(date);
+            //去除 -
+            String replace = format.replace("-", "");
+            //获取到客户表最大id并加1
+            if(maxId<10){
+                result=replace+0+maxId;
+            }else{
+                result=replace+maxId;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            return i;
+            return result;
         }
     }
 
@@ -77,6 +93,30 @@ public class ClientResourceServiceImpl implements ClientResourceService {
         int result = 0;
         try {
             result = clientResourceMapper.selectOne(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            return result;
+        }
+    }
+
+    @Override
+    public int changeClient(ClientResource clientResource) {
+        int result= 0;
+        try {
+            result = clientResourceMapper.changeClient(clientResource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            return result;
+        }
+    }
+
+    @Override
+    public int selectClientId(String clientCode) {
+        int result= 0;
+        try {
+            result = clientResourceMapper.selectClientId(clientCode);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {

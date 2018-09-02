@@ -8,18 +8,19 @@ public class ClientResource {
 
   private Long cr_Id;
   private String cr_ClientName;
-  private String cr_ClientCode;
+  private Long cr_ClientCode;
   private Long cr_Sex;
   private Long cr_Type;
   private Long cr_Status;
   private Long cr_AllotStatus;
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private Date cr_EnterTime;
-  private String cr_EntryPerson;
+  private Long cr_EntryPerson;
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date cr_Birthday;
   private String cr_Phone;
-  private Long cr_WorkTelephone;
-  private Long cr_HomeTelephone;
+  private String cr_WorkTelephone;
+  private String cr_HomeTelephone;
   private String cr_Email;
   private String cr_Address;
   private String cr_Remark;
@@ -27,6 +28,15 @@ public class ClientResource {
   private String  clientType; //客户类型
   private String clientStatus; //客户状态
   private String clientAllotStatus; //客户分配
+  private EmployeeInfo employeeInfo;
+
+  public EmployeeInfo getEmployeeInfo() {
+    return employeeInfo;
+  }
+
+  public void setEmployeeInfo(EmployeeInfo employeeInfo) {
+    this.employeeInfo = employeeInfo;
+  }
 
   public Long getCr_Id() {
     return cr_Id;
@@ -44,11 +54,11 @@ public class ClientResource {
     this.cr_ClientName = cr_ClientName;
   }
 
-  public String getCr_ClientCode() {
+  public Long getCr_ClientCode() {
     return cr_ClientCode;
   }
 
-  public void setCr_ClientCode(String cr_ClientCode) {
+  public void setCr_ClientCode(Long cr_ClientCode) {
     this.cr_ClientCode = cr_ClientCode;
   }
 
@@ -92,11 +102,11 @@ public class ClientResource {
     this.cr_EnterTime = cr_EnterTime;
   }
 
-  public String getCr_EntryPerson() {
+  public Long getCr_EntryPerson() {
     return cr_EntryPerson;
   }
 
-  public void setCr_EntryPerson(String cr_EntryPerson) {
+  public void setCr_EntryPerson(Long cr_EntryPerson) {
     this.cr_EntryPerson = cr_EntryPerson;
   }
 
@@ -116,19 +126,19 @@ public class ClientResource {
     this.cr_Phone = cr_Phone;
   }
 
-  public Long getCr_WorkTelephone() {
+  public String getCr_WorkTelephone() {
     return cr_WorkTelephone;
   }
 
-  public void setCr_WorkTelephone(Long cr_WorkTelephone) {
+  public void setCr_WorkTelephone(String cr_WorkTelephone) {
     this.cr_WorkTelephone = cr_WorkTelephone;
   }
 
-  public Long getCr_HomeTelephone() {
+  public String getCr_HomeTelephone() {
     return cr_HomeTelephone;
   }
 
-  public void setCr_HomeTelephone(Long cr_HomeTelephone) {
+  public void setCr_HomeTelephone(String cr_HomeTelephone) {
     this.cr_HomeTelephone = cr_HomeTelephone;
   }
 

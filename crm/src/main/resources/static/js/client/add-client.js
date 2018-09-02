@@ -9,6 +9,9 @@ $("#pickdate").change(function(e) {
         .updateStatus('cr_Birthday','NOT_VALIDATED',null)
         .validateField('cr_Birthday');
 });
+/**
+ * 获取客户编号
+ */
 $(function(){
     $.ajax({
         url:"/client/getCode",
@@ -32,6 +35,8 @@ function addClient(){
         success:function(data){
             if(data>0){
                 $("#sub").attr("disabled","disabled");
+                $("#back").attr("disabled","disabled");
+                $(".app-menu").attr("disabled","disabled");
                 $.notify({
                     offset: "200",
                     message: "添加成功"
@@ -40,10 +45,9 @@ function addClient(){
                 })
                 window.setTimeout("window.location.href='/jumps/client-resource'",2000);
             }else{
-                $("#back").attr("disabled","disabled");
                 $.notify({
                     offset: "200",
-                    message: "修改失败"
+                    message: "添加失败"
                 },{
                     type:"danger"
                 })
@@ -94,6 +98,10 @@ $(function(){
                 validators: {
                     notEmpty: {
                         message: '输入的客户姓名不能为空!'
+                    },
+                    regexp: {
+                        regexp: /^[\u4e00-\u9fa5]{2,4}$/,
+                            message: '只能2-4个是汉字组成！'
                     }
                 }
             }, 'cr_ClientCode': {
@@ -122,10 +130,63 @@ $(function(){
                         message: '请选择！'
                     }
                 }
+            },'cr_WorkTelephone':  {
+                validators: {
+                    /*正则表达式*/
+                    regexp: {
+                        regexp: /\d{3}-\d{8}|\d{4}-\d{7}/,
+                        message: '格式不正确！如：0511-4405222、021-87888822'
+                    }
+                }
+            },'cr_HomeTelephone':  {
+                validators: {
+                    /*正则表达式*/
+                    regexp: {
+                        regexp: /\d{3}-\d{8}|\d{4}-\d{7}/,
+                        message: '格式不正确！如：0511-4405222、021-87888822'
+                    }
+                }
+            }
+            ,'cr_Remark': {
+                validators: {
+                    /*正则表达式*/
+                    regexp: {
+                        regexp: /^.{0,200}$/,
+                        message: '最多输入200字！'
+                    }
+                }
+            } ,'cr_Address': {
+                validators: {
+                    /*正则表达式*/
+                    regexp: {
+                        regexp: /^.{0,50}$/,
+                        message: '最多输入50字！'
+                    }
+                }
             }
         }
     }).on('success.form.bv',function(e) {
         e.preventDefault();
         addClient();
     })
+});
+
+/*获取分配状态下拉框的值*/
+$(document).ready(function (){
+    $.ajax({
+        url:"/dataDict/getAllocaionState",
+        type:"post",
+        dataType:"json",
+        success:function(data){
+            if(null!=data){
+                for(var i = 0; i < data.length; i++){
+                    if(data[i].typeName=='客户类型'){
+                        $("#clientType").append("<option name='dataDictName'  value='"+data[i].valueId+"'>"+data[i].valueName+"</option>");
+                    }else if(data[i].typeName=='客户状态'){
+                        $("#clientStatus").append("<option name='dataDictName' value='"+data[i].valueId+"'>"+data[i].valueName+"</option>");
+                    }
+                }
+            }
+        }
+    });
 });

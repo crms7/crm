@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.dao.servicecreate.ServiceCreateMapper">
+    <select id="selServiceCreate" resultType="ServiceCreate">
+        SELECT sc.*,dd1.`valueName` AS serviceType ,dd2.`valueName`
+        AS serviceState ,emp1.e_name AS operaPerson,emp2.e_name AS dealPeople
+        FROM Service_Create AS
+        sc,data_dictionary AS dd1,
+        data_dictionary AS dd2,
+        employee_info AS emp1,
+        employee_info AS emp2
+        <trim prefix="where" prefixOverrides="and">
+        AND (dd1.`valueId` = sc.`sc_TYPE`  AND dd1.`typeName`='服务类型')
+        AND ( dd2.`valueId`  =sc.`sc_STATE`  AND dd2.`typeName`='服务状态')
+        AND sc.`sc_operaPerson`=emp1.`e_id`
+        AND sc.`sc_dealPeople`=emp2.`e_id`
+        </trim>
+        limit #{begin},#{end}
+    </select>
+
+    <select id="countService" resultType="_int">
+        select count(*) from service_create
+    </select>
+</mapper>

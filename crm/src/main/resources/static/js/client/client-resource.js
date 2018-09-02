@@ -32,7 +32,7 @@ function format ( d ) {
         '</tr>'+
         '<tr>'+
         '<td>办公电话:</td>'+
-        '<td>'+d.cr_WorkTelephone+'</td>'+
+        '<td>'+(d.cr_WorkTelephone==null?'':d.cr_WorkTelephone)+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>电子邮箱:</td>'+
@@ -40,7 +40,7 @@ function format ( d ) {
         '</tr>'+
         '<tr>'+
         '<td>家庭电话:</td>'+
-        '<td>'+d.cr_HomeTelephone+'</td>'+
+        '<td>'+(d.cr_HomeTelephone==null?'':d.cr_HomeTelephone)+'</td>'+
         '</tr>'+
         '<tr>'+
         '<td>联系地址:</td>'+
@@ -48,7 +48,7 @@ function format ( d ) {
         '</tr>'+
         '<tr>'+
         '<td>备注信息:</td>'+
-        '<td>'+d.cr_Remark+'</td>'+
+        '<td>'+(d.cr_Remark==null?'':d.cr_Remark)+'</td>'+
         '</tr>'+
         '</table>';
 }
@@ -59,6 +59,7 @@ $(document).ready(function() {
    var table= $('#datatable-responsive').DataTable({
         "serverSide":true,//服务器端获取数据
         "bStateSave": false,//不缓存数据
+       "ordering": false,//不排序
         "ajax": {
             url:"/client/clientListInfo",
             "type": "POST",
@@ -100,6 +101,7 @@ $(document).ready(function() {
             { "data": "cr_Id" },
             {"data": "cr_Id",
                 "render": function (data, type, full, meta) {
+                //判断每一页的第一行选中
                     return  meta.row==0?'<input type="radio" checked="checked" value="'+data+'"  name="cr_Id" class="checkchild"/>':'<input type="radio"  value="'+data+'" onclick="getCr_Id()" name="cr_Id" class="checkchild"/>';
                 },"bSortable": false},
             { "data": "cr_ClientName" },
@@ -114,7 +116,10 @@ $(document).ready(function() {
                 "render": function (data, type, full, meta) {
                     return  moment(data).format("YYYY-MM-DD HH:mm:ss");
                 }},
-            { "data": "cr_entryPerson",defaultContent:"" }
+            { "data": "employeeInfo",defaultContent:"" ,
+                "render": function (data, type, full, meta) {
+                    return  data.e_Name;
+                }}
         ],
        "order": [[1, 'asc']],
         "oLanguage" : { // 国际化配置
@@ -139,12 +144,12 @@ $(document).ready(function() {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
         if ( row.child.isShown() ) {
-            // This row is already open - close it
+            //这一行已经打开了-关闭它
             row.child.hide();
             tr.removeClass('shown');
         }
         else {
-            // Open this row
+            // 打开当前行
             row.child( format(row.data()) ).show();
             tr.addClass('shown');
         }
@@ -159,16 +164,18 @@ $(document).ready(function() {
         fixedHeader: true
     });
 });
-/*获取选中的值*/
-function getClientOneInfo(){
+
+/**
+ * 修改客户的查询
+ */
+function updClient(){
     var cr_Id= $("input[name='cr_Id']:checked").val();
-    alert(cr_Id);
-    window.location.href = "/client/checkClient/"+cr_Id;
+    window.location.href = "/client/getOneClient/"+cr_Id;
 }
 /*获取分配状态下拉框的值*/
 $(document).ready(function (){
     $.ajax({
-        url:"/client/getAllocaionState",
+        url:"/dataDict/getAllocaionState",
         type:"post",
         dataType:"json",
         data:{"typeName":"客户分配"} ,
@@ -179,5 +186,5 @@ $(document).ready(function (){
                 }
             }
         }
-    })
+    });
 });

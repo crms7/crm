@@ -38,5 +38,27 @@ public interface ClientResourceMapper {
      */
     int selectMaxId() throws  Exception;
 
+    /**
+     * 查客户单条信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
     int selectOne(@Param("id") Integer id)throws  Exception;
+
+    /**
+     * 修改客户信息
+     * @param clientResource
+     * @return
+     * @throws Exception
+     */
+    int changeClient(ClientResource clientResource)throws Exception;
+
+    /**
+     * 以客户编码查询客户id
+     * @param clientCode
+     * @return
+     * @throws Exception
+     */
+    int selectClientId(@Param("clientCode") String clientCode) throws Exception;
 }

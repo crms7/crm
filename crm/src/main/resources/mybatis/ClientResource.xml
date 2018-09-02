@@ -3,18 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.crm.dao.clientResource.ClientResourceMapper">
-    <select id="selectClient" resultType="ClientResource">
+
+
+    <resultMap id="clientResourceMap" type="ClientResource">
+        <id property="cr_Id" column="cr_Id"></id>
+        <association property="employeeInfo" javaType="EmployeeInfo">
+            <id column="e_Id" property="e_Id"></id>
+        </association>
+    </resultMap>
+    <select id="selectClient" resultMap="clientResourceMap">
             SELECT  cr.*,dd1.valueName AS clientType,
             dd2.valueName AS clientStatus,
-            dd3.valueName AS clientAllotStatus
+            dd3.valueName AS clientAllotStatus,
+            emp.*
               FROM
               client_Resource AS cr
               ,data_dictionary AS dd1
               ,data_dictionary AS dd2
               ,data_dictionary AS dd3
+              ,employee_info AS emp
               <trim prefix="WHERE" prefixOverrides="and">
-                  <if test="client.cr_Id !=null and client.cr_Id >0">
-                      cr.cr_Id =#{client.cr_Id}
+                  <if test="client.cr_Id !='' and client.cr_Id >0">
+                      and cr.cr_Id =#{client.cr_Id}
                   </if>
                   <if test="client.cr_ClientName!='' and client.cr_ClientName!=null">
                       AND  cr.cr_ClientName like CONCAT('%',#{client.cr_ClientName},'%')
@@ -28,6 +38,7 @@
                   AND (dd1.`valueId`=cr.`cr_type` AND dd1.typeName='客户类型')
                   AND (dd2.`valueId`=cr.`cr_status` AND dd2.typeName='客户状态')
                   AND (dd3.`valueId`=cr.`cr_allotStatus` AND dd3.`typeName`='客户分配')
+                  AND cr.`cr_entryPerson`=emp.`e_id`
               </trim>
               order by cr.cr_id
               limit #{begin},#{end}
@@ -57,8 +68,59 @@
       #{cr_Birthday},#{cr_Phone},#{cr_WorkTelephone},#{cr_HomeTelephone},#{cr_Email},
       #{cr_Address},#{cr_Remark})
     </insert>
+    <!--获取最大的id值-->
     <select id="selectMaxId" resultType="_int">
         SELECT MAX(cr_id) FROM client_Resource
     </select>
 
+    <update id="changeClient">
+        UPDATE client_Resource
+        <trim prefix="set" suffixOverrides="," suffix="WHERE cr_id=#{cr_Id}">
+            <if test="cr_ClientName!=null and cr_ClientName!=''">
+                cr_clientName=#{cr_ClientName},
+            </if>
+            <if test="cr_Sex != null ">
+                cr_sex=#{cr_Sex},
+            </if>
+            <if test="cr_Type!=null and cr_Type!=''">
+                cr_type=#{cr_Type},
+            </if>
+            <if test="cr_Status!=null and cr_Status!=''">
+                cr_status=#{cr_Status},
+            </if>
+            <if test="cr_AllotStatus!=null and cr_AllotStatus!=''">
+                    cr_allotStatus=#{cr_AllotStatus},
+            </if>
+            <if test="cr_EnterTime!=null ">
+                    cr_enterTime = #{cr_EnterTime},
+            </if>
+            <if test="cr_EntryPerson!=null and cr_EntryPerson!='' ">
+                    cr_entryPerson=#{cr_EntryPerson},
+            </if>
+            <if test="cr_Birthday!=null ">
+                cr_birthday=#{cr_Birthday},
+            </if>
+            <if test="cr_Phone!=null and cr_Phone!=''">
+                cr_phone=#{cr_Phone},
+            </if>
+            <if test="cr_WorkTelephone!=null ">
+                cr_workTelephone=#{cr_WorkTelephone},
+            </if>
+            <if test="cr_HomeTelephone!=null and cr_HomeTelephone!=''">
+                cr_homeTelephone=#{cr_HomeTelephone},
+            </if>
+            <if test="cr_Email!=null and cr_Email!=''">
+                cr_email=#{cr_Email},
+            </if>
+            <if test="cr_Address!=null and cr_Address!=''">
+                cr_address=#{cr_Address},
+            </if>
+            <if test="cr_Remark!=null and cr_Remark!=''">
+                cr_remark=#{cr_Remark}
+            </if>
+        </trim>
+    </update>
+    <select id="selectClientId" resultType="_int">
+        select cr_id from client_resource where cr_clientCode=#{clientCode}
+    </select>
 </mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crm.dao.clientprogress.ClientProgressMapper">
+    <resultMap id="progressMap" type="ClientProgress"  autoMapping="true">
+        <id column="cp_Id" property="cp_Id"></id>
+        <association property="clientResource" javaType="ClientResource">
+            <id column="cr_Id" property="cr_Id"></id>
+        </association>
+        <association property="employeeInfo" javaType="EmployeeInfo">
+            <id column="e_Id" property="e_Id"></id>
+        </association>
+    </resultMap>
+    <!--查询计划表信息-->
+    <select id="selectProgress" resultMap="progressMap">
+       SELECT pro.*,cr.* ,emp.* FROM client_progress AS pro,client_resource AS cr
+        ,employee_info as  emp
+       <trim prefix="where" prefixOverrides="and " >
+           <if test="progress.cp_PlanMonth!=null">
+           and  DATE_FORMAT(pro.cp_planMonth,'%Y-%m')= DATE_FORMAT(#{progress.cp_PlanMonth},'%Y-%m')
+           </if>
+          and cr.`cr_id`=pro.`cp_nameId`
+          and pro.cp_operationPerson=emp.e_Id
+       </trim>
+        order by pro.cp_id
+       limit #{begin},#{end}
+    </select>
+    <!--查询计划表总计记录数-->
+    <select id="countClientProgress" resultType="_int">
+        select count(*) from client_progress
+        <trim prefix="where" prefixOverrides="and ">
+        <if test="progress.cp_PlanMonth!=null">
+            and  DATE_FORMAT(cp_planMonth,'%Y-%m')= DATE_FORMAT(#{progress.cp_PlanMonth},'%Y-%m')
+        </if>
+        </trim>
+    </select>
+    <!--新增计划表信息-->
+    <insert id="addProgress">
+      INSERT INTO client_progress(`cp_id`,`cp_nameId`,`cp_creationTime`,
+      `cp_operationTime`,`cp_operationPerson`,`cp_planCode`,`cp_planName`,
+      `cp_planMonth`,`cp_planStatus`,`cp_planContent`)
+        VALUE   (DEFAULT,#{cp_NameId},NOW(),NOW(),#{cp_OperationPerson},
+        #{cp_PlanCode},#{cp_PlanName},#{cp_PlanMonth},1,#{cp_PlanContent})
+    </insert>
+    <select id="selectMaxId" resultType="_int">
+        SELECT MAX(cp_id) FROM client_progress
+    </select>
+    <select id="selectOne" resultMap="progressMap">
+        SELECT pro.*,cr.* FROM client_progress AS pro,client_resource AS cr
+        where cr.`cr_id`=pro.`cp_nameId` and pro.cp_id=#{cp_Id}
+        order by pro.cp_id
+    </select>
+    <update id="updProgress">
+        update client_progress
+        <trim prefix="set" suffixOverrides="," suffix="WHERE cp_id=#{cp_Id}">
+            <if test="cp_PlanMonth!=null">
+            cp_planMonth=#{cp_PlanMonth},
+            </if>
+            <if test="cp_PlanStatus!=null and cp_PlanStatus>0">
+            cp_planStatus=#{cp_PlanStatus},
+            </if>
+            <if test="cp_PlanContent!=null and cp_PlanContent!=''">
+            cp_planContent#{cp_PlanContent},
+            </if>
+            cp_operationTime=NOW()
+        </trim>
+    </update>
+
+    <delete id="delProgress">
+        delete from client_progress where cp_Id= #{cp_Id}
+    </delete>
+</mapper>
