@@ -32,6 +32,17 @@
             <if test="dp_Name!='' and dp_Name!=null">
                 dp_name=#{dp_Name}
             </if>
+            <if test="dp_Id!=null and dp_Id!=''">
+                AND  dp_Id!=#{dp_Id}
+            </if>
+            <if test=" dp_Code!='' and  dp_Code!=null">
+                AND  dp_Code=#{dp_Code}
+            </if>
         </where>
     </select>
+
+    <insert id="insert">
+        INSERT INTO dept (dp_id,dp_code,dp_name,dp_lastTime,dp_operator,dp_deptProfile,dp_description)
+        values(default,#{dp_Code},#{dp_Name},now(),#{dp_Operator},#{dp_DeptProfile},#{dp_Description})
+    </insert>
 </mapper>

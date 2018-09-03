@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 @Controller
 public class EmployeeInfoController {
@@ -68,12 +69,27 @@ public class EmployeeInfoController {
         return num;
     }
 
-    @RequestMapping("/uppwd")
+    @RequestMapping("/uppwdyz")
     @ResponseBody
-    public Object upPwd(EmployeeInfo employeeInfo){
+    public Object upPwdyz(EmployeeInfo employeeInfo){
         String m_pwd = MD5.MD5Util(employeeInfo.getE_Pwd()); //加密后密码
         employeeInfo.setE_Pwd(m_pwd);
         int num= employeeInfoService.oldPwd(employeeInfo);
-        return num;
+        HashMap map = new HashMap();
+        if(num<1){
+            map.put("valid",false);
+        }else{
+            map.put("valid",true);
+        }
+        return map;
+    }
+
+    @RequestMapping("/uppwd")
+    @ResponseBody
+    public Object uppwd(EmployeeInfo employeeInfo){
+        String m_pwd = MD5.MD5Util(employeeInfo.getE_Pwd()); //加密后密码
+        employeeInfo.setE_Pwd(m_pwd);
+        int i = employeeInfoService.upPwd(employeeInfo);
+        return i;
     }
 }

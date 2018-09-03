@@ -17,5 +17,18 @@ public interface EmployeeInfoService {
      */
     int updateEmp(EmployeeInfo employeeInfo);
 
+    /**
+     * 验证密码是否正确
+     * @param employeeInfo
+     * @return
+     */
     int oldPwd(EmployeeInfo employeeInfo);
+
+
+    /**
+     * 修改密码
+     * @param employeeInfo
+     * @return
+     */
+    int upPwd(EmployeeInfo employeeInfo);
 }

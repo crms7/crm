@@ -19,4 +19,5 @@ public interface EmployeeInfoMapper {
 
     int oldPwd(EmployeeInfo employeeInfo);
 
+    int upPwd(EmployeeInfo employeeInfo);
 }

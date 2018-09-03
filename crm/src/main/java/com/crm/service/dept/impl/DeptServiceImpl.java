@@ -28,4 +28,9 @@ public class DeptServiceImpl implements DeptService {
     public int countDept(Dept dept) {
         return deptMapper.countDept(dept);
     }
+
+    @Override
+    public int insert(Dept dept) {
+        return deptMapper.insert(dept);
+    }
 }

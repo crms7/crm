@@ -63,5 +63,14 @@
     <select id="oldPwd" resultType="_int">
         select count(1) from Employee_info where e_Id=#{e_Id} and e_pwd=#{e_Pwd}
     </select>
+
+    <update id="upPwd" >
+        UPDATE Employee_info
+        <trim prefix="set" suffixOverrides="," suffix="WHERE e_id=#{e_Id}">
+                <if test="e_Pwd!=null and e_Pwd!=''">
+                    e_pwd=#{e_Pwd}
+                </if>
+        </trim>
+    </update>
 </mapper>
 

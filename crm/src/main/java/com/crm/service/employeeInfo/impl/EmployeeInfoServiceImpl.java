@@ -40,5 +40,10 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
         return employeeInfoMapper.oldPwd(employeeInfo);
     }
 
+    @Override
+    public int upPwd(EmployeeInfo employeeInfo) {
+        return employeeInfoMapper.upPwd(employeeInfo);
+    }
+
 
 }

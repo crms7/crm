@@ -1,6 +1,7 @@
 package com.crm.controller.dept;
 
 import com.crm.entity.Dept;
+import com.crm.entity.EmployeeInfo;
 import com.crm.entity.RoleManagement;
 import com.crm.service.dept.DeptService;
 import com.crm.util.Page;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,5 +55,27 @@ public class DeptController {
         pages.setStart(start);
         pages.setDraw(Integer.parseInt(draw));
         return pages;
+    }
+
+    @RequestMapping("/deptexits")
+    @ResponseBody
+    public Object deptExits(Dept dept){
+        int count = deptService.countDept(dept);
+        HashMap map = new HashMap();
+        if(count>0){
+            map.put("valid",false);
+        }else{
+            map.put("valid",true);
+        }
+        return map;
+    }
+
+    @RequestMapping("/insertDept")
+    @ResponseBody
+    public Object insertDept(Dept dept, HttpSession session){
+        EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
+        dept.setDp_Operator(emp.getE_Id().intValue());
+        int num = deptService.insert(dept);
+        return num;
     }
 }
