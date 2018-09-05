@@ -4,6 +4,7 @@ import com.crm.md5.MD5;
 import com.crm.entity.EmployeeInfo;
 import com.crm.service.employeeInfo.EmployeeInfoService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,9 +63,14 @@ public class EmployeeInfoController {
      * @param employeeInfo
      * @return
      */
-    @RequestMapping("/upEmp")
+    @RequestMapping("/upEmp/{str}")
     @ResponseBody
-    public Object updateEmp(EmployeeInfo employeeInfo){
+    public Object updateEmp(EmployeeInfo employeeInfo, @PathVariable("str") String str,HttpSession session){
+        if("phone".equals(str)){
+            EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
+            emp.setE_Phone(employeeInfo.getE_Phone());
+            session.setAttribute("emp",emp);
+        }
         int num = employeeInfoService.updateEmp(employeeInfo);
         return num;
     }

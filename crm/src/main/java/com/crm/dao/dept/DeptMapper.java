@@ -1,6 +1,7 @@
 package com.crm.dao.dept;
 
 import com.crm.entity.Dept;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -32,5 +33,11 @@ public interface DeptMapper {
      * @return
      */
     int insert(Dept dept);
+
+    Dept selectOne(@Param("id") Integer id);
+
+    int upDept(Dept dept);
+
+    int delDept(Dept dept);
 
 }

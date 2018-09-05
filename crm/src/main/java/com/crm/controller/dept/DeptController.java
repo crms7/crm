@@ -6,12 +6,15 @@ import com.crm.entity.RoleManagement;
 import com.crm.service.dept.DeptService;
 import com.crm.util.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,7 @@ import java.util.Map;
 public class DeptController {
     @Resource
    private   DeptService deptService;
+    ModelAndView mv = new ModelAndView();
 
     /**
      * 下拉框name
@@ -77,5 +81,31 @@ public class DeptController {
         dept.setDp_Operator(emp.getE_Id().intValue());
         int num = deptService.insert(dept);
         return num;
+    }
+
+    @RequestMapping("/showDept/{id}")
+    public ModelAndView showUpDeptInfo(@PathVariable("id") Integer id){
+        Dept dept = deptService.selectOne(id);
+        mv.addObject("dept",dept);
+        mv.setViewName("upd-dept");
+        return mv;
+    }
+    @RequestMapping("/upDept")
+    @ResponseBody
+    public Object upDept(Dept dept,HttpSession session){
+        EmployeeInfo emp = (EmployeeInfo)session.getAttribute("emp");
+        dept.setDp_Operator(emp.getE_Id().intValue());
+        dept.setDp_LastTime(new Date());
+        int i = deptService.upDept(dept);
+        return i;
+    }
+
+    @RequestMapping("/delDept/{id}")
+    @ResponseBody
+    public Object delDept(@PathVariable("id") Long id ){
+        Dept dept  = new Dept();
+        dept.setDp_Id(id);
+        int i = deptService.delDept(dept);
+        return i;
     }
 }

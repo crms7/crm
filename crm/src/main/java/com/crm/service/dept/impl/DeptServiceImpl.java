@@ -33,4 +33,19 @@ public class DeptServiceImpl implements DeptService {
     public int insert(Dept dept) {
         return deptMapper.insert(dept);
     }
+
+    @Override
+    public Dept selectOne(Integer id) {
+        return deptMapper.selectOne(id);
+    }
+
+    @Override
+    public int upDept(Dept dept) {
+        return deptMapper.upDept(dept);
+    }
+
+    @Override
+    public int delDept(Dept dept) {
+        return deptMapper.delDept(dept);
+    }
 }

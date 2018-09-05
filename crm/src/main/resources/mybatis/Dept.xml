@@ -45,4 +45,37 @@
         INSERT INTO dept (dp_id,dp_code,dp_name,dp_lastTime,dp_operator,dp_deptProfile,dp_description)
         values(default,#{dp_Code},#{dp_Name},now(),#{dp_Operator},#{dp_DeptProfile},#{dp_Description})
     </insert>
+
+    <select id="selectOne" resultType="Dept">
+        select * from dept where dp_id=#{id}
+    </select>
+
+    <update id="upDept">
+        UPDATE dept
+        <trim suffix="where dp_id=#{dp_Id}" prefix="set" suffixOverrides=",">
+          <if test="dp_Code!=null and dp_Code!=''">
+              dp_code=#{dp_Code},
+          </if>
+            <if test="dp_Name!=null and dp_Name!=''">
+                dp_Name=#{dp_Name},
+            </if>
+            <if test="dp_LastTime!=null ">
+                dp_LastTime=#{dp_LastTime},
+            </if>
+            <if test="dp_Operator!=null and dp_Operator!=''">
+                dp_Operator=#{dp_Operator},
+            </if>
+            <if test="dp_DeptProfile!=null and dp_DeptProfile!=''">
+                dp_DeptProfile=#{dp_DeptProfile},
+            </if>
+            <if test="dp_Description!=null and dp_Description!=''">
+                dp_Description=#{dp_Description},
+            </if>
+        </trim>
+    </update>
+
+    <delete id="delDept" >
+      delete from dept where dp_id=#{dp_Id}
+    </delete>
+
 </mapper>

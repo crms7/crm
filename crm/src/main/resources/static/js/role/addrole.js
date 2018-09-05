@@ -12,8 +12,8 @@ $(function(){
                         message: '输入的角色编码不能为空!'
                     },
                     regexp: {
-                        regexp:  /^[A-Za-z]{2,8}$/,
-                        message: '角色编码只能是2-8位字母'
+                        regexp:  /^[A-Za-z]{2,18}$/,
+                        message: '角色编码只能是2-18位字母'
                     },
                     remote: {
                         message: '编码已存在',

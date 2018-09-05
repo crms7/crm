@@ -149,8 +149,27 @@ function getDeptName(){
 }
 
 function showupdept(){
-    window.location.href="/jumps/upd-dept"+$("input[name='d_id']:checked").val();
-    alert($("input[name='d_id']:checked").val());
+    window.location.href="/showDept/"+$("input[name='d_id']:checked").val();
+}
+
+function deldept(){
+    $.ajax({
+        url:"/delDept/"+$("input[name='d_id']:checked").val(),
+        type:"post",
+        DataType:"json",
+        success:function(data){
+            if(data>0){
+                window.setTimeout("window.location.href='/jumps/dept-manage'",2000);
+            }else{
+                $.notify({
+                    offset: "50",
+                    message: "删除失败"
+                },{
+                    type:"danger"
+                });
+            }
+        }
+    })
 }
 
 $(".btn-success").on("click",function () {

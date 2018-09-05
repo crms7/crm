@@ -3,35 +3,27 @@ function upPhoneClick(obj){
         $(obj).html("保存");
         $("#upPhone").removeAttr("disabled");
     }else{
-        upPhone();
+        var reg = /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/;
+        var phone =$("#upPhone").val();
+        if(reg.test(phone)){
+            upPhone();
+        }else{
+            layer.tips('请检查手机号', '#upPhone', {
+                tips: [1, '#cc6065'],
+                time: 2500
+            })
+        }
     }
 }
 
 function upPhone(){
     $.ajax({
-        url:"/upEmp",
+        url:"/upEmp/phone",
         type:"post",
         dataType:"json",
         data:{
             "e_Phone":$("#upPhone").val(),
             "e_Id":$("#empIdi").val()
-        },
-        success:function(data){
-            if(data>0){
-                $.notify({
-                    offset: "50",
-                    message: "修改成功"
-                },{
-                    type:"success"
-                });
-            }else{
-                $.notify({
-                    offset: "50",
-                    message: "修改失败"
-                },{
-                    type:"danger"
-                });
-            }
         }
     })
     $("#upPhone").attr("disabled","disabled");

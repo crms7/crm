@@ -12,8 +12,8 @@ $(function(){
                         message: '输入的部门编码不能为空!'
                     },
                     regexp: {
-                        regexp:  /^[A-Za-z_]{2,10}$/,
-                        message: '部门编码只能是2-10位字母和_'
+                        regexp:  /^[A-Za-z_]{2,18}$/,
+                        message: '部门编码只能是2-18位字母和_'
                     },
                     remote: {
                         message: '编码已存在',
@@ -72,7 +72,6 @@ function addDept(){
                 });
                 window.setTimeout("window.location.href='/jumps/dept-manage'",2000);
             }else{
-                $("#sub").attr("disabled","disabled");
                 $.notify({
                     offset: "50",
                     message: "新增失败"
